@@ -16,8 +16,8 @@ jobs:
       - name: Configure stack environment
         run: |
           cat > .env <<'EOF'
-          ADMIN_API_TOKEN=e2e-admin-token
-          SECRET_KEY=e2e-secret-key-for-ci
+          ADMIN_API_TOKEN=ci-e2e-4f9a1c7e2b8d46309a5d1f7c3e6b0a24
+          SECRET_KEY=ci-e2e-8d2b5f1a9e4c7306b5d8a2f1c4e7903b
           POSTGRES_PASSWORD=webhook
           BASE_URL=http://localhost:8000
           EOF
@@ -55,7 +55,7 @@ jobs:
         working-directory: frontend
         env:
           E2E_BASE_URL: http://localhost:8000
-          E2E_ADMIN_TOKEN: e2e-admin-token
+          E2E_ADMIN_TOKEN: ci-e2e-4f9a1c7e2b8d46309a5d1f7c3e6b0a24
 
       - name: Dump logs on failure
         if: failure()

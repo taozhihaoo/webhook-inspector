@@ -1,0 +1,968 @@
+﻿2026-09-29T20:42:30.2112517Z Current runner version: '2.337.0'
+2026-09-29T20:42:30.2140129Z ##[group]Runner Image Provisioner
+2026-09-29T20:42:30.2141041Z Hosted Compute Agent
+2026-09-29T20:42:30.2141752Z Version: 20260828.587
+2026-09-29T20:42:30.2142428Z Commit: abac92662cab4cc7352de4f9f9d2e2419aad9c29
+2026-09-29T20:42:30.2143223Z Build Date: 2026-08-28T16:44:25Z
+2026-09-29T20:42:30.2144021Z Worker ID: {64c13ca8-69d8-44f8-aaa0-91dd8778dd93}
+2026-09-29T20:42:30.2144767Z Azure Region: westus2
+2026-09-29T20:42:30.2145675Z ##[endgroup]
+2026-09-29T20:42:30.2147248Z ##[group]Operating System
+2026-09-29T20:42:30.2148092Z Ubuntu
+2026-09-29T20:42:30.2148737Z 24.04.5
+2026-09-29T20:42:30.2149291Z LTS
+2026-09-29T20:42:30.2149873Z ##[endgroup]
+2026-09-29T20:42:30.2150468Z ##[group]Runner Image
+2026-09-29T20:42:30.2151140Z Image: ubuntu-24.04
+2026-09-29T20:42:30.2152174Z Version: 20260920.314.1
+2026-09-29T20:42:30.2153500Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20260920.314/images/ubuntu/Ubuntu2404-Readme.md
+2026-09-29T20:42:30.2155123Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20260920.314
+2026-09-29T20:42:30.2156154Z ##[endgroup]
+2026-09-29T20:42:30.2157472Z ##[group]GITHUB_TOKEN Permissions
+2026-09-29T20:42:30.2159975Z Contents: read
+2026-09-29T20:42:30.2160747Z Metadata: read
+2026-09-29T20:42:30.2161380Z Packages: read
+2026-09-29T20:42:30.2162014Z ##[endgroup]
+2026-09-29T20:42:30.2164223Z Secret source: Actions
+2026-09-29T20:42:30.2165191Z Cache mode: write
+2026-09-29T20:42:30.2166121Z Prepare workflow directory
+2026-09-29T20:42:30.2565105Z Prepare all required actions
+2026-09-29T20:42:30.2635234Z Getting action download info
+2026-09-29T20:42:30.6094718Z Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+2026-09-29T20:42:30.7155489Z Download action repository 'actions/setup-node@v4' (SHA:49933ea5288caeca8642d1e84afbd3f7d6820020)
+2026-09-29T20:42:30.9073077Z Complete job name: e2e
+2026-09-29T20:42:30.9840474Z ##[group]Run actions/checkout@v4
+2026-09-29T20:42:30.9841341Z with:
+2026-09-29T20:42:30.9841831Z   repository: taozhihaoo/webhook-inspector
+2026-09-29T20:42:30.9845872Z   token: ***
+2026-09-29T20:42:30.9846351Z   ssh-strict: true
+2026-09-29T20:42:30.9846804Z   ssh-user: git
+2026-09-29T20:42:30.9847260Z   persist-credentials: true
+2026-09-29T20:42:30.9847825Z   clean: true
+2026-09-29T20:42:30.9848435Z   sparse-checkout-cone-mode: true
+2026-09-29T20:42:30.9848970Z   fetch-depth: 1
+2026-09-29T20:42:30.9849416Z   fetch-tags: false
+2026-09-29T20:42:30.9849883Z   show-progress: true
+2026-09-29T20:42:30.9850341Z   lfs: false
+2026-09-29T20:42:30.9850763Z   submodules: false
+2026-09-29T20:42:30.9851222Z   set-safe-directory: true
+2026-09-29T20:42:30.9851736Z   allow-unsafe-pr-checkout: false
+2026-09-29T20:42:30.9852452Z ##[endgroup]
+2026-09-29T20:42:31.0864063Z Syncing repository: taozhihaoo/webhook-inspector
+2026-09-29T20:42:31.0866588Z ##[group]Getting Git version info
+2026-09-29T20:42:31.0868098Z Working directory is '/home/runner/work/webhook-inspector/webhook-inspector'
+2026-09-29T20:42:31.0870091Z [command]/usr/bin/git version
+2026-09-29T20:42:31.0900854Z git version 2.55.0
+2026-09-29T20:42:31.0922299Z ##[endgroup]
+2026-09-29T20:42:31.0938054Z Temporarily overriding HOME='/home/runner/work/_temp/c02a4c84-a92a-4e0e-8c78-5b0028cbb8d8' before making global git config changes
+2026-09-29T20:42:31.0939744Z Adding repository directory to the temporary git global config as a safe directory
+2026-09-29T20:42:31.0944264Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/webhook-inspector/webhook-inspector
+2026-09-29T20:42:31.0993979Z Deleting the contents of '/home/runner/work/webhook-inspector/webhook-inspector'
+2026-09-29T20:42:31.0999881Z ##[group]Initializing the repository
+2026-09-29T20:42:31.1004766Z [command]/usr/bin/git init /home/runner/work/webhook-inspector/webhook-inspector
+2026-09-29T20:42:31.1097262Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-09-29T20:42:31.1099034Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-09-29T20:42:31.1100834Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-09-29T20:42:31.1102070Z hint: call:
+2026-09-29T20:42:31.1102687Z hint:
+2026-09-29T20:42:31.1103441Z hint: 	git config --global init.defaultBranch <name>
+2026-09-29T20:42:31.1104076Z hint:
+2026-09-29T20:42:31.1104687Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-09-29T20:42:31.1106077Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-09-29T20:42:31.1107104Z hint:
+2026-09-29T20:42:31.1107542Z hint: 	git branch -m <name>
+2026-09-29T20:42:31.1108280Z hint:
+2026-09-29T20:42:31.1108936Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-09-29T20:42:31.1110112Z Initialized empty Git repository in /home/runner/work/webhook-inspector/webhook-inspector/.git/
+2026-09-29T20:42:31.1112214Z [command]/usr/bin/git remote add origin https://github.com/taozhihaoo/webhook-inspector
+2026-09-29T20:42:31.1164412Z ##[endgroup]
+2026-09-29T20:42:31.1165584Z ##[group]Disabling automatic garbage collection
+2026-09-29T20:42:31.1167502Z [command]/usr/bin/git config --local gc.auto 0
+2026-09-29T20:42:31.1201685Z ##[endgroup]
+2026-09-29T20:42:31.1202791Z ##[group]Setting up auth
+2026-09-29T20:42:31.1219303Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-09-29T20:42:31.1244764Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-09-29T20:42:31.1614761Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-09-29T20:42:31.1655086Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-09-29T20:42:31.1925665Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-09-29T20:42:31.1966234Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-09-29T20:42:31.2210717Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-09-29T20:42:31.2255563Z ##[endgroup]
+2026-09-29T20:42:31.2256402Z ##[group]Fetching the repository
+2026-09-29T20:42:31.2265222Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +7ccddb4efcedac56b50d8bef83d84fdf591d811e:refs/remotes/origin/main
+2026-09-29T20:42:31.6766975Z From https://github.com/taozhihaoo/webhook-inspector
+2026-09-29T20:42:31.6768416Z  * [new ref]         7ccddb4efcedac56b50d8bef83d84fdf591d811e -> origin/main
+2026-09-29T20:42:31.6771644Z ##[endgroup]
+2026-09-29T20:42:31.6773464Z ##[group]Determining the checkout info
+2026-09-29T20:42:31.6775368Z ##[endgroup]
+2026-09-29T20:42:31.6781668Z [command]/usr/bin/git sparse-checkout disable
+2026-09-29T20:42:31.6838497Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-09-29T20:42:31.6876623Z ##[group]Checking out the ref
+2026-09-29T20:42:31.6882362Z [command]/usr/bin/git checkout --progress --force -B main refs/remotes/origin/main
+2026-09-29T20:42:31.7054287Z Switched to a new branch 'main'
+2026-09-29T20:42:31.7058585Z branch 'main' set up to track 'origin/main'.
+2026-09-29T20:42:31.7066154Z ##[endgroup]
+2026-09-29T20:42:31.7115876Z [command]/usr/bin/git log -1 --format=%H
+2026-09-29T20:42:31.7147755Z 7ccddb4efcedac56b50d8bef83d84fdf591d811e
+2026-09-29T20:42:31.7399040Z ##[group]Run cat > .env <<'EOF'
+2026-09-29T20:42:31.7399773Z [36;1mcat > .env <<'EOF'[0m
+2026-09-29T20:42:31.7400386Z [36;1mADMIN_API_TOKEN=e2e-admin-token[0m
+2026-09-29T20:42:31.7401052Z [36;1mSECRET_KEY=e2e-secret-key-for-ci[0m
+2026-09-29T20:42:31.7401697Z [36;1mPOSTGRES_PASSWORD=webhook[0m
+2026-09-29T20:42:31.7402566Z [36;1mBASE_URL=http://localhost:8000[0m
+2026-09-29T20:42:31.7403160Z [36;1mEOF[0m
+2026-09-29T20:42:31.7653902Z shell: /usr/bin/bash -e {0}
+2026-09-29T20:42:31.7654562Z ##[endgroup]
+2026-09-29T20:42:31.7843203Z ##[group]Run docker compose -f docker-compose.yml -f docker-compose.demo.yml up -d --build
+2026-09-29T20:42:31.7844504Z [36;1mdocker compose -f docker-compose.yml -f docker-compose.demo.yml up -d --build[0m
+2026-09-29T20:42:31.7916554Z shell: /usr/bin/bash -e {0}
+2026-09-29T20:42:31.7917147Z ##[endgroup]
+2026-09-29T20:42:32.0419734Z  db Pulling 
+2026-09-29T20:42:33.2747507Z  e2de96513ba9 Pulling fs layer 
+2026-09-29T20:42:33.2748493Z  1b7f9cd581ee Pulling fs layer 
+2026-09-29T20:42:33.2748915Z  210b280f9556 Pulling fs layer 
+2026-09-29T20:42:33.2749276Z  81717818649a Pulling fs layer 
+2026-09-29T20:42:33.2749594Z  3ae6141cfd99 Pulling fs layer 
+2026-09-29T20:42:33.2749921Z  25b77f59fd95 Pulling fs layer 
+2026-09-29T20:42:33.2750228Z  6c25da34e03f Pulling fs layer 
+2026-09-29T20:42:33.2750615Z  a88782f92806 Pulling fs layer 
+2026-09-29T20:42:33.2750936Z  d8d21be4bf02 Pulling fs layer 
+2026-09-29T20:42:33.2751234Z  6117bd39f23f Pulling fs layer 
+2026-09-29T20:42:33.2751662Z  509688edf37b Pulling fs layer 
+2026-09-29T20:42:33.2751972Z  6c25da34e03f Waiting 
+2026-09-29T20:42:33.2752264Z  a88782f92806 Waiting 
+2026-09-29T20:42:33.2752564Z  d8d21be4bf02 Waiting 
+2026-09-29T20:42:33.2752912Z  6117bd39f23f Waiting 
+2026-09-29T20:42:33.2753197Z  509688edf37b Waiting 
+2026-09-29T20:42:33.2753483Z  81717818649a Waiting 
+2026-09-29T20:42:33.2753747Z  3ae6141cfd99 Waiting 
+2026-09-29T20:42:33.2754088Z  25b77f59fd95 Waiting 
+2026-09-29T20:42:33.5100343Z  1b7f9cd581ee Downloading [==================================================>]     969B/969B
+2026-09-29T20:42:33.5101127Z  1b7f9cd581ee Verifying Checksum 
+2026-09-29T20:42:33.5101575Z  1b7f9cd581ee Download complete 
+2026-09-29T20:42:33.5102170Z  210b280f9556 Downloading [>                                                  ]  15.79kB/901.4kB
+2026-09-29T20:42:33.5162750Z  e2de96513ba9 Downloading [>                                                  ]  48.55kB/3.85MB
+2026-09-29T20:42:33.5593146Z  210b280f9556 Verifying Checksum 
+2026-09-29T20:42:33.5593970Z  210b280f9556 Download complete 
+2026-09-29T20:42:33.5903303Z  e2de96513ba9 Verifying Checksum 
+2026-09-29T20:42:33.5903809Z  e2de96513ba9 Download complete 
+2026-09-29T20:42:33.5915975Z  e2de96513ba9 Extracting [>                                                  ]  65.54kB/3.85MB
+2026-09-29T20:42:33.6773757Z  e2de96513ba9 Extracting [==================================================>]   3.85MB/3.85MB
+2026-09-29T20:42:33.6779707Z  e2de96513ba9 Extracting [==================================================>]   3.85MB/3.85MB
+2026-09-29T20:42:33.6953568Z  e2de96513ba9 Pull complete 
+2026-09-29T20:42:33.6970330Z  1b7f9cd581ee Extracting [==================================================>]     969B/969B
+2026-09-29T20:42:33.6974717Z  1b7f9cd581ee Extracting [==================================================>]     969B/969B
+2026-09-29T20:42:33.7616041Z  81717818649a Downloading [==================================================>]     172B/172B
+2026-09-29T20:42:33.7622151Z  81717818649a Verifying Checksum 
+2026-09-29T20:42:33.7622855Z  81717818649a Download complete 
+2026-09-29T20:42:33.8059215Z  3ae6141cfd99 Downloading [==================================================>]     116B/116B
+2026-09-29T20:42:33.8059998Z  3ae6141cfd99 Verifying Checksum 
+2026-09-29T20:42:33.8060427Z  3ae6141cfd99 Download complete 
+2026-09-29T20:42:33.8764915Z  25b77f59fd95 Downloading [>                                                  ]  536.1kB/111.3MB
+2026-09-29T20:42:33.9771782Z  25b77f59fd95 Downloading [========>                                          ]  18.66MB/111.3MB
+2026-09-29T20:42:34.0100455Z  6c25da34e03f Downloading [==================>                                ]  3.501kB/9.669kB
+2026-09-29T20:42:34.0109570Z  6c25da34e03f Downloading [==================================================>]  9.669kB/9.669kB
+2026-09-29T20:42:34.0110987Z  6c25da34e03f Verifying Checksum 
+2026-09-29T20:42:34.0111910Z  6c25da34e03f Download complete 
+2026-09-29T20:42:34.0531160Z  a88782f92806 Downloading [==================================================>]     128B/128B
+2026-09-29T20:42:34.0531748Z  a88782f92806 Verifying Checksum 
+2026-09-29T20:42:34.0532300Z  a88782f92806 Download complete 
+2026-09-29T20:42:34.0768759Z  25b77f59fd95 Downloading [=======================>                           ]  53.37MB/111.3MB
+2026-09-29T20:42:34.1782840Z  25b77f59fd95 Downloading [=======================================>           ]   87.6MB/111.3MB
+2026-09-29T20:42:34.2482739Z  25b77f59fd95 Verifying Checksum 
+2026-09-29T20:42:34.2483309Z  25b77f59fd95 Download complete 
+2026-09-29T20:42:34.2496359Z  d8d21be4bf02 Downloading [==================================================>]     169B/169B
+2026-09-29T20:42:34.2496987Z  d8d21be4bf02 Verifying Checksum 
+2026-09-29T20:42:34.2497407Z  d8d21be4bf02 Download complete 
+2026-09-29T20:42:34.3005399Z  6117bd39f23f Downloading [============================>                      ]  3.501kB/6.111kB
+2026-09-29T20:42:34.3005901Z  6117bd39f23f Download complete 
+2026-09-29T20:42:34.5011286Z  509688edf37b Downloading [==================================================>]     185B/185B
+2026-09-29T20:42:34.5011796Z  509688edf37b Verifying Checksum 
+2026-09-29T20:42:34.5012125Z  509688edf37b Download complete 
+2026-09-29T20:42:36.1741286Z  1b7f9cd581ee Pull complete 
+2026-09-29T20:42:36.1754686Z  210b280f9556 Extracting [=>                                                 ]  32.77kB/901.4kB
+2026-09-29T20:42:36.1941863Z  210b280f9556 Extracting [==================================================>]  901.4kB/901.4kB
+2026-09-29T20:42:36.1944135Z  210b280f9556 Extracting [==================================================>]  901.4kB/901.4kB
+2026-09-29T20:42:36.4662410Z  210b280f9556 Pull complete 
+2026-09-29T20:42:36.4673087Z  81717818649a Extracting [==================================================>]     172B/172B
+2026-09-29T20:42:36.4678086Z  81717818649a Extracting [==================================================>]     172B/172B
+2026-09-29T20:42:36.4783839Z  81717818649a Pull complete 
+2026-09-29T20:42:36.4795534Z  3ae6141cfd99 Extracting [==================================================>]     116B/116B
+2026-09-29T20:42:36.4800060Z  3ae6141cfd99 Extracting [==================================================>]     116B/116B
+2026-09-29T20:42:36.4852713Z  3ae6141cfd99 Pull complete 
+2026-09-29T20:42:36.4931206Z  25b77f59fd95 Extracting [>                                                  ]  557.1kB/111.3MB
+2026-09-29T20:42:36.5990718Z  25b77f59fd95 Extracting [==>                                                ]  5.571MB/111.3MB
+2026-09-29T20:42:36.7018291Z  25b77f59fd95 Extracting [======>                                            ]  13.93MB/111.3MB
+2026-09-29T20:42:36.8026509Z  25b77f59fd95 Extracting [==========>                                        ]  22.28MB/111.3MB
+2026-09-29T20:42:36.9035099Z  25b77f59fd95 Extracting [=============>                                     ]  30.64MB/111.3MB
+2026-09-29T20:42:37.0060511Z  25b77f59fd95 Extracting [=================>                                 ]  38.99MB/111.3MB
+2026-09-29T20:42:37.1085847Z  25b77f59fd95 Extracting [=====================>                             ]  47.35MB/111.3MB
+2026-09-29T20:42:37.2161581Z  25b77f59fd95 Extracting [========================>                          ]  55.15MB/111.3MB
+2026-09-29T20:42:37.3254136Z  25b77f59fd95 Extracting [===========================>                       ]  60.16MB/111.3MB
+2026-09-29T20:42:37.4283850Z  25b77f59fd95 Extracting [==============================>                    ]  67.96MB/111.3MB
+2026-09-29T20:42:37.5294524Z  25b77f59fd95 Extracting [==================================>                ]  75.76MB/111.3MB
+2026-09-29T20:42:37.7052267Z  25b77f59fd95 Extracting [====================================>              ]  81.33MB/111.3MB
+2026-09-29T20:42:37.8151472Z  25b77f59fd95 Extracting [=====================================>             ]  82.44MB/111.3MB
+2026-09-29T20:42:37.9229317Z  25b77f59fd95 Extracting [======================================>            ]  85.23MB/111.3MB
+2026-09-29T20:42:38.0286940Z  25b77f59fd95 Extracting [========================================>          ]  89.69MB/111.3MB
+2026-09-29T20:42:38.1344184Z  25b77f59fd95 Extracting [==========================================>        ]  94.14MB/111.3MB
+2026-09-29T20:42:38.2724742Z  25b77f59fd95 Extracting [============================================>      ]  98.04MB/111.3MB
+2026-09-29T20:42:38.3761626Z  25b77f59fd95 Extracting [================================================>  ]  108.1MB/111.3MB
+2026-09-29T20:42:38.4341085Z  25b77f59fd95 Extracting [==================================================>]  111.3MB/111.3MB
+2026-09-29T20:42:38.9708058Z  25b77f59fd95 Pull complete 
+2026-09-29T20:42:38.9716608Z  6c25da34e03f Extracting [==================================================>]  9.669kB/9.669kB
+2026-09-29T20:42:38.9727269Z  6c25da34e03f Extracting [==================================================>]  9.669kB/9.669kB
+2026-09-29T20:42:38.9850260Z  6c25da34e03f Pull complete 
+2026-09-29T20:42:38.9859649Z  a88782f92806 Extracting [==================================================>]     128B/128B
+2026-09-29T20:42:38.9864097Z  a88782f92806 Extracting [==================================================>]     128B/128B
+2026-09-29T20:42:38.9939372Z  a88782f92806 Pull complete 
+2026-09-29T20:42:38.9949386Z  d8d21be4bf02 Extracting [==================================================>]     169B/169B
+2026-09-29T20:42:38.9953345Z  d8d21be4bf02 Extracting [==================================================>]     169B/169B
+2026-09-29T20:42:39.0024224Z  d8d21be4bf02 Pull complete 
+2026-09-29T20:42:39.0034420Z  6117bd39f23f Extracting [==================================================>]  6.111kB/6.111kB
+2026-09-29T20:42:39.0038382Z  6117bd39f23f Extracting [==================================================>]  6.111kB/6.111kB
+2026-09-29T20:42:39.0123937Z  6117bd39f23f Pull complete 
+2026-09-29T20:42:39.0133526Z  509688edf37b Extracting [==================================================>]     185B/185B
+2026-09-29T20:42:39.0137723Z  509688edf37b Extracting [==================================================>]     185B/185B
+2026-09-29T20:42:39.0201380Z  509688edf37b Pull complete 
+2026-09-29T20:42:39.0275778Z  db Pulled 
+2026-09-29T20:42:39.2091972Z #1 [internal] load local bake definitions
+2026-09-29T20:42:39.4257392Z #1 reading from stdin 410B done
+2026-09-29T20:42:39.4257707Z #1 DONE 0.0s
+2026-09-29T20:42:39.4257839Z 
+2026-09-29T20:42:39.4258125Z #2 [internal] load build definition from Dockerfile
+2026-09-29T20:42:39.4258471Z #2 transferring dockerfile: 1.20kB done
+2026-09-29T20:42:39.4258754Z #2 DONE 0.0s
+2026-09-29T20:42:39.4258874Z 
+2026-09-29T20:42:39.4259042Z #3 [internal] load metadata for docker.io/library/node:20-alpine
+2026-09-29T20:42:39.6496024Z #3 ...
+2026-09-29T20:42:39.6496284Z 
+2026-09-29T20:42:39.6496562Z #4 [auth] library/node:pull token for registry-1.docker.io
+2026-09-29T20:42:39.6496972Z #4 DONE 0.0s
+2026-09-29T20:42:39.6497090Z 
+2026-09-29T20:42:39.6497258Z #5 [auth] library/python:pull token for registry-1.docker.io
+2026-09-29T20:42:39.6497581Z #5 DONE 0.0s
+2026-09-29T20:42:39.7998572Z 
+2026-09-29T20:42:39.7999166Z #6 [internal] load metadata for docker.io/library/python:3.12-slim
+2026-09-29T20:42:40.1203549Z #6 ...
+2026-09-29T20:42:40.1203748Z 
+2026-09-29T20:42:40.1203971Z #3 [internal] load metadata for docker.io/library/node:20-alpine
+2026-09-29T20:42:40.1204331Z #3 DONE 0.8s
+2026-09-29T20:42:40.2550883Z 
+2026-09-29T20:42:40.2551744Z #6 [internal] load metadata for docker.io/library/python:3.12-slim
+2026-09-29T20:42:40.2552391Z #6 DONE 0.9s
+2026-09-29T20:42:40.2552519Z 
+2026-09-29T20:42:40.2552628Z #7 [internal] load .dockerignore
+2026-09-29T20:42:40.2553034Z #7 transferring context: 236B done
+2026-09-29T20:42:40.2553408Z #7 DONE 0.0s
+2026-09-29T20:42:40.2553583Z 
+2026-09-29T20:42:40.2553745Z #8 [internal] load build context
+2026-09-29T20:42:40.2554685Z #8 transferring context: 338.94kB 0.0s done
+2026-09-29T20:42:40.2555127Z #8 DONE 0.0s
+2026-09-29T20:42:40.2555309Z 
+2026-09-29T20:42:40.2556064Z #9 [runtime 1/9] FROM docker.io/library/python:3.12-slim@sha256:f77ac9e44ae96ef2c90b8053ea08c31f8be030f824196b0ae4db6d462c84e51f
+2026-09-29T20:42:40.2557092Z #9 resolve docker.io/library/python:3.12-slim@sha256:f77ac9e44ae96ef2c90b8053ea08c31f8be030f824196b0ae4db6d462c84e51f done
+2026-09-29T20:42:40.2557815Z #9 sha256:f77ac9e44ae96ef2c90b8053ea08c31f8be030f824196b0ae4db6d462c84e51f 10.37kB / 10.37kB done
+2026-09-29T20:42:40.2558640Z #9 sha256:44ff437bba879d4941b710a369a8f19266aea34b29002807f0c487fabc9eec9b 1.75kB / 1.75kB done
+2026-09-29T20:42:40.2559247Z #9 sha256:9e87977b867847e186d066f531ef783b006d582a985c341c269446088d90f2c4 5.65kB / 5.65kB done
+2026-09-29T20:42:40.4568272Z #9 sha256:6b37362b3da78869050b894b799ad4df04f1f3b52774087db0d81151570244c8 0B / 29.83MB 0.3s
+2026-09-29T20:42:40.4568961Z #9 sha256:3764a9a7d1e8a98213ab2201a41dbf3da9c60240ea35a5ea96ab994555070a70 0B / 1.29MB 0.3s
+2026-09-29T20:42:40.6383824Z #9 sha256:6b37362b3da78869050b894b799ad4df04f1f3b52774087db0d81151570244c8 2.10MB / 29.83MB 0.4s
+2026-09-29T20:42:40.6384811Z #9 sha256:b0dc7f87bef15c2536cb182d6c48b52f90a0522884ec9eb222f833fa97ffebf0 0B / 12.12MB 0.4s
+2026-09-29T20:42:40.7412998Z #9 sha256:6b37362b3da78869050b894b799ad4df04f1f3b52774087db0d81151570244c8 29.83MB / 29.83MB 0.5s done
+2026-09-29T20:42:40.7414049Z #9 extracting sha256:6b37362b3da78869050b894b799ad4df04f1f3b52774087db0d81151570244c8
+2026-09-29T20:42:40.8427000Z #9 sha256:3764a9a7d1e8a98213ab2201a41dbf3da9c60240ea35a5ea96ab994555070a70 1.29MB / 1.29MB 0.5s done
+2026-09-29T20:42:40.8428650Z #9 sha256:b0dc7f87bef15c2536cb182d6c48b52f90a0522884ec9eb222f833fa97ffebf0 12.12MB / 12.12MB 0.5s done
+2026-09-29T20:42:40.8429832Z #9 sha256:06ad939ed42b51caafb25b14810875d14e0ee0c441d3e2e5e46475fb8c150bca 249B / 249B 0.6s done
+2026-09-29T20:42:41.7612903Z #9 extracting sha256:6b37362b3da78869050b894b799ad4df04f1f3b52774087db0d81151570244c8 1.0s done
+2026-09-29T20:42:41.8860897Z #9 extracting sha256:3764a9a7d1e8a98213ab2201a41dbf3da9c60240ea35a5ea96ab994555070a70
+2026-09-29T20:42:42.0500570Z #9 extracting sha256:3764a9a7d1e8a98213ab2201a41dbf3da9c60240ea35a5ea96ab994555070a70 0.1s done
+2026-09-29T20:42:42.3314969Z #9 ...
+2026-09-29T20:42:42.3315609Z 
+2026-09-29T20:42:42.3316301Z #10 [frontend-build 1/6] FROM docker.io/library/node:20-alpine@sha256:fb4cd12c85ee03686f6af5362a0b0d56d50c58a04632e6c0fb8363f609372293
+2026-09-29T20:42:42.3317606Z #10 resolve docker.io/library/node:20-alpine@sha256:fb4cd12c85ee03686f6af5362a0b0d56d50c58a04632e6c0fb8363f609372293 done
+2026-09-29T20:42:42.3326761Z #10 sha256:11cedc39e663e7c5d5cb9cc77a461a0d2adc25537b94e6831a6108f09cb2001b 6.52kB / 6.52kB done
+2026-09-29T20:42:42.3328124Z #10 sha256:6a0ac1617861a677b045b7ff88545213ec31c0ff08763195a70a4a5adda577bb 3.86MB / 3.86MB 0.2s done
+2026-09-29T20:42:42.3329281Z #10 sha256:4feea04c154301db6f4a496efa397b3db96603b1c009c797cfdde77bea8b3287 43.23MB / 43.23MB 0.4s done
+2026-09-29T20:42:42.3330501Z #10 sha256:b2cbbfe903b0821005780971ddc5892edcc4ce74c5a48d82e1d2b382edac3122 1.26MB / 1.26MB 0.2s done
+2026-09-29T20:42:42.3331789Z #10 sha256:fb4cd12c85ee03686f6af5362a0b0d56d50c58a04632e6c0fb8363f609372293 7.67kB / 7.67kB done
+2026-09-29T20:42:42.3332834Z #10 sha256:afdf98210b07b586eb71fa22ba2e432e058e4cd1304d31ed60888755b8c865fb 1.72kB / 1.72kB done
+2026-09-29T20:42:42.3333877Z #10 extracting sha256:6a0ac1617861a677b045b7ff88545213ec31c0ff08763195a70a4a5adda577bb 0.1s done
+2026-09-29T20:42:42.3334926Z #10 sha256:fff4e2c1b189bf87d63ad8bd07f7f4eb288d6f2b6a07a8bb44c60e8c075d2096 445B / 445B 0.3s done
+2026-09-29T20:42:42.3338171Z #10 extracting sha256:4feea04c154301db6f4a496efa397b3db96603b1c009c797cfdde77bea8b3287 1.4s done
+2026-09-29T20:42:42.3339317Z #10 extracting sha256:b2cbbfe903b0821005780971ddc5892edcc4ce74c5a48d82e1d2b382edac3122 0.0s done
+2026-09-29T20:42:42.3340391Z #10 extracting sha256:fff4e2c1b189bf87d63ad8bd07f7f4eb288d6f2b6a07a8bb44c60e8c075d2096 done
+2026-09-29T20:42:42.3341616Z #10 DONE 2.1s
+2026-09-29T20:42:42.3341807Z 
+2026-09-29T20:42:42.3341977Z #11 [frontend-build 2/6] WORKDIR /build
+2026-09-29T20:42:42.3342386Z #11 DONE 0.0s
+2026-09-29T20:42:42.3342771Z 
+2026-09-29T20:42:42.3343145Z #12 [frontend-build 3/6] COPY frontend/package.json frontend/package-lock.json ./
+2026-09-29T20:42:42.3343763Z #12 DONE 0.0s
+2026-09-29T20:42:42.3343938Z 
+2026-09-29T20:42:42.3344546Z #9 [runtime 1/9] FROM docker.io/library/python:3.12-slim@sha256:f77ac9e44ae96ef2c90b8053ea08c31f8be030f824196b0ae4db6d462c84e51f
+2026-09-29T20:42:42.3345730Z #9 extracting sha256:b0dc7f87bef15c2536cb182d6c48b52f90a0522884ec9eb222f833fa97ffebf0 0.1s
+2026-09-29T20:42:43.1246734Z #9 extracting sha256:b0dc7f87bef15c2536cb182d6c48b52f90a0522884ec9eb222f833fa97ffebf0 0.7s done
+2026-09-29T20:42:43.1252548Z #9 extracting sha256:06ad939ed42b51caafb25b14810875d14e0ee0c441d3e2e5e46475fb8c150bca done
+2026-09-29T20:42:43.1253315Z #9 DONE 2.8s
+2026-09-29T20:42:43.1253560Z 
+2026-09-29T20:42:43.1253911Z #13 [runtime 2/9] RUN useradd --create-home --uid 1000 inspector
+2026-09-29T20:42:43.1375485Z #13 DONE 0.2s
+2026-09-29T20:42:43.1376841Z 
+2026-09-29T20:42:43.1377505Z #14 [frontend-build 4/6] RUN npm ci --no-fund --no-audit
+2026-09-29T20:42:43.3680006Z #14 ...
+2026-09-29T20:42:43.3680203Z 
+2026-09-29T20:42:43.3680306Z #15 [runtime 3/9] WORKDIR /app
+2026-09-29T20:42:43.3680600Z #15 DONE 0.0s
+2026-09-29T20:42:43.3680726Z 
+2026-09-29T20:42:43.3680867Z #16 [runtime 4/9] COPY backend/pyproject.toml ./
+2026-09-29T20:42:43.3681165Z #16 DONE 0.0s
+2026-09-29T20:42:43.3681278Z 
+2026-09-29T20:42:43.3681390Z #17 [runtime 5/9] COPY backend/app ./app
+2026-09-29T20:42:43.3681654Z #17 DONE 0.0s
+2026-09-29T20:42:43.3681771Z 
+2026-09-29T20:42:43.3681881Z #18 [runtime 6/9] COPY backend/alembic.ini ./
+2026-09-29T20:42:43.3682147Z #18 DONE 0.0s
+2026-09-29T20:42:43.3682258Z 
+2026-09-29T20:42:43.3682370Z #19 [runtime 7/9] COPY backend/alembic ./alembic
+2026-09-29T20:42:43.3682660Z #19 DONE 0.0s
+2026-09-29T20:42:43.5170887Z 
+2026-09-29T20:42:43.5171603Z #20 [runtime 8/9] RUN pip install --no-cache-dir .
+2026-09-29T20:42:44.9526992Z #20 1.734 Processing /app
+2026-09-29T20:42:45.1053242Z #20 1.738   Installing build dependencies: started
+2026-09-29T20:42:46.3133474Z #20 ...
+2026-09-29T20:42:46.3148780Z 
+2026-09-29T20:42:46.3158891Z #14 [frontend-build 4/6] RUN npm ci --no-fund --no-audit
+2026-09-29T20:42:46.3160213Z #14 1.964 npm warn deprecated whatwg-encoding@3.1.1: Use @exodus/bytes instead for a more spec-conformant and faster implementation
+2026-09-29T20:42:46.3161707Z #14 3.821 
+2026-09-29T20:42:46.3162198Z #14 3.821 added 182 packages in 4s
+2026-09-29T20:42:46.3162773Z #14 3.824 npm notice
+2026-09-29T20:42:46.3163505Z #14 3.824 npm notice New major version of npm available! 10.8.2 -> 12.1.0
+2026-09-29T20:42:46.3164678Z #14 3.824 npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.1.0
+2026-09-29T20:42:46.3165703Z #14 3.824 npm notice To update run: npm install -g npm@12.1.0
+2026-09-29T20:42:46.3180110Z #14 3.824 npm notice
+2026-09-29T20:42:46.3180700Z #14 DONE 3.8s
+2026-09-29T20:42:46.3503314Z 
+2026-09-29T20:42:46.3504533Z #21 [frontend-build 5/6] COPY frontend/ ./
+2026-09-29T20:42:46.3505367Z #21 DONE 0.2s
+2026-09-29T20:42:46.3505802Z 
+2026-09-29T20:42:46.3506260Z #20 [runtime 8/9] RUN pip install --no-cache-dir .
+2026-09-29T20:42:46.4705653Z #20 3.254   Installing build dependencies: finished with status 'done'
+2026-09-29T20:42:46.6227589Z #20 3.256   Getting requirements to build wheel: started
+2026-09-29T20:42:46.9398813Z #20 3.571   Getting requirements to build wheel: finished with status 'done'
+2026-09-29T20:42:46.9399999Z #20 3.573   Preparing metadata (pyproject.toml): started
+2026-09-29T20:42:47.0117284Z #20 3.795   Preparing metadata (pyproject.toml): finished with status 'done'
+2026-09-29T20:42:47.1450030Z #20 3.927 Collecting fastapi>=0.115 (from webhook-inspector==0.2.0)
+2026-09-29T20:42:47.2489320Z #20 3.979   Downloading fastapi-0.142.0-py3-none-any.whl.metadata (27 kB)
+2026-09-29T20:42:47.2519231Z #20 4.032 Collecting uvicorn>=0.32 (from uvicorn[standard]>=0.32->webhook-inspector==0.2.0)
+2026-09-29T20:42:47.4079780Z #20 4.040   Downloading uvicorn-0.54.0-py3-none-any.whl.metadata (6.6 kB)
+2026-09-29T20:42:47.4207663Z #20 4.204 Collecting pydantic>=2.9 (from webhook-inspector==0.2.0)
+2026-09-29T20:42:47.6298242Z #20 4.212   Downloading pydantic-2.13.5-py3-none-any.whl.metadata (110 kB)
+2026-09-29T20:42:47.6300054Z #20 4.254 Collecting pydantic-settings>=2.6 (from webhook-inspector==0.2.0)
+2026-09-29T20:42:47.6301270Z #20 4.263   Downloading pydantic_settings-2.15.0-py3-none-any.whl.metadata (3.9 kB)
+2026-09-29T20:42:47.8877275Z #20 4.671 Collecting sqlalchemy>=2.0.36 (from sqlalchemy[asyncio]>=2.0.36->webhook-inspector==0.2.0)
+2026-09-29T20:42:48.0462976Z #20 4.679   Downloading sqlalchemy-2.1.1-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (9.7 kB)
+2026-09-29T20:42:48.0835798Z #20 4.866 Collecting greenlet>=3.1 (from webhook-inspector==0.2.0)
+2026-09-29T20:42:48.1902540Z #20 4.875   Downloading greenlet-3.5.6-cp312-cp312-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl.metadata (3.8 kB)
+2026-09-29T20:42:48.1936051Z #20 4.906 Collecting alembic>=1.14 (from webhook-inspector==0.2.0)
+2026-09-29T20:42:48.1969079Z #20 4.914   Downloading alembic-1.20.0-py3-none-any.whl.metadata (7.3 kB)
+2026-09-29T20:42:48.1987623Z #20 4.964 Collecting asyncpg>=0.30 (from webhook-inspector==0.2.0)
+2026-09-29T20:42:48.1989012Z #20 4.973   Downloading asyncpg-0.31.0-cp312-cp312-manylinux_2_28_x86_64.whl.metadata (4.4 kB)
+2026-09-29T20:42:48.3771455Z #20 5.002 Collecting httpx>=0.28 (from webhook-inspector==0.2.0)
+2026-09-29T20:42:48.3772279Z #20 5.010   Downloading httpx-0.28.1-py3-none-any.whl.metadata (7.1 kB)
+2026-09-29T20:42:48.5118925Z #20 5.295 Collecting cryptography>=43 (from webhook-inspector==0.2.0)
+2026-09-29T20:42:48.7306984Z #20 5.303   Downloading cryptography-50.0.1-cp311-abi3-manylinux_2_34_x86_64.whl.metadata (4.3 kB)
+2026-09-29T20:42:48.7330269Z #20 5.344 Collecting Mako (from alembic>=1.14->webhook-inspector==0.2.0)
+2026-09-29T20:42:48.7348857Z #20 5.351   Downloading mako-1.4.3-py3-none-any.whl.metadata (2.9 kB)
+2026-09-29T20:42:48.7359141Z #20 5.372 Collecting typing-extensions>=4.12 (from alembic>=1.14->webhook-inspector==0.2.0)
+2026-09-29T20:42:48.7378932Z #20 5.380   Downloading typing_extensions-4.16.0-py3-none-any.whl.metadata (3.3 kB)
+2026-09-29T20:42:48.7379990Z #20 5.513 Collecting cffi>=2.0.0 (from cryptography>=43->webhook-inspector==0.2.0)
+2026-09-29T20:42:48.8378418Z #20 5.524   Downloading cffi-2.1.1-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (2.5 kB)
+2026-09-29T20:42:48.8379777Z #20 5.565 Collecting starlette>=0.46.0 (from fastapi>=0.115->webhook-inspector==0.2.0)
+2026-09-29T20:42:48.8382023Z #20 5.573   Downloading starlette-1.7.0-py3-none-any.whl.metadata (6.6 kB)
+2026-09-29T20:42:48.8383964Z #20 5.602 Collecting typing-inspection>=0.4.2 (from fastapi>=0.115->webhook-inspector==0.2.0)
+2026-09-29T20:42:48.8387773Z #20 5.609   Downloading typing_inspection-0.4.4-py3-none-any.whl.metadata (2.6 kB)
+2026-09-29T20:42:48.8390601Z #20 5.620 Collecting annotated-doc>=0.0.2 (from fastapi>=0.115->webhook-inspector==0.2.0)
+2026-09-29T20:42:48.9459752Z #20 5.628   Downloading annotated_doc-0.0.5-py3-none-any.whl.metadata (6.5 kB)
+2026-09-29T20:42:48.9482381Z #20 5.654 Collecting opentelemetry-api>=1.44.0 (from fastapi>=0.115->webhook-inspector==0.2.0)
+2026-09-29T20:42:48.9505452Z #20 5.662   Downloading opentelemetry_api-1.45.0-py3-none-any.whl.metadata (1.4 kB)
+2026-09-29T20:42:48.9506337Z #20 5.687 Collecting anyio (from httpx>=0.28->webhook-inspector==0.2.0)
+2026-09-29T20:42:48.9507103Z #20 5.695   Downloading anyio-4.15.1-py3-none-any.whl.metadata (4.7 kB)
+2026-09-29T20:42:48.9508068Z #20 5.719 Collecting certifi (from httpx>=0.28->webhook-inspector==0.2.0)
+2026-09-29T20:42:48.9508907Z #20 5.728   Downloading certifi-2026.7.22-py3-none-any.whl.metadata (2.5 kB)
+2026-09-29T20:42:49.0505764Z #20 5.755 Collecting httpcore==1.* (from httpx>=0.28->webhook-inspector==0.2.0)
+2026-09-29T20:42:49.0523156Z #20 5.763   Downloading httpcore-1.0.9-py3-none-any.whl.metadata (21 kB)
+2026-09-29T20:42:49.0525110Z #20 5.783 Collecting idna (from httpx>=0.28->webhook-inspector==0.2.0)
+2026-09-29T20:42:49.0527105Z #20 5.793   Downloading idna-3.20-py3-none-any.whl.metadata (7.2 kB)
+2026-09-29T20:42:49.0529152Z #20 5.808 Collecting h11>=0.16 (from httpcore==1.*->httpx>=0.28->webhook-inspector==0.2.0)
+2026-09-29T20:42:49.0534107Z #20 5.818   Downloading h11-0.16.0-py3-none-any.whl.metadata (8.3 kB)
+2026-09-29T20:42:49.0535399Z #20 5.834 Collecting annotated-types>=0.6.0 (from pydantic>=2.9->webhook-inspector==0.2.0)
+2026-09-29T20:42:49.2093921Z #20 5.842   Downloading annotated_types-0.8.0-py3-none-any.whl.metadata (15 kB)
+2026-09-29T20:42:49.9553871Z #20 6.738 Collecting pydantic-core==2.46.5 (from pydantic>=2.9->webhook-inspector==0.2.0)
+2026-09-29T20:42:50.0647049Z #20 6.747   Downloading pydantic_core-2.46.5-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (6.6 kB)
+2026-09-29T20:42:50.0669023Z #20 6.791 Collecting python-dotenv>=0.21.0 (from pydantic-settings>=2.6->webhook-inspector==0.2.0)
+2026-09-29T20:42:50.0670294Z #20 6.802   Downloading python_dotenv-1.2.3-py3-none-any.whl.metadata (29 kB)
+2026-09-29T20:42:50.0671531Z #20 6.848 Collecting click>=7.0 (from uvicorn>=0.32->uvicorn[standard]>=0.32->webhook-inspector==0.2.0)
+2026-09-29T20:42:50.1855181Z #20 6.855   Downloading click-8.5.0-py3-none-any.whl.metadata (2.6 kB)
+2026-09-29T20:42:50.1856695Z #20 6.894 Collecting httptools>=0.8.0 (from uvicorn[standard]>=0.32->webhook-inspector==0.2.0)
+2026-09-29T20:42:50.1858195Z #20 6.899   Downloading httptools-0.8.0-cp312-cp312-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl.metadata (3.5 kB)
+2026-09-29T20:42:50.1859507Z #20 6.968 Collecting pyyaml>=5.1 (from uvicorn[standard]>=0.32->webhook-inspector==0.2.0)
+2026-09-29T20:42:50.3332133Z #20 6.977   Downloading pyyaml-6.0.3-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (2.4 kB)
+2026-09-29T20:42:50.3334158Z #20 7.020 Collecting uvloop>=0.15.1 (from uvicorn[standard]>=0.32->webhook-inspector==0.2.0)
+2026-09-29T20:42:50.3335754Z #20 7.030   Downloading uvloop-0.22.1-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (4.9 kB)
+2026-09-29T20:42:50.3337205Z #20 7.115 Collecting watchfiles>=0.20 (from uvicorn[standard]>=0.32->webhook-inspector==0.2.0)
+2026-09-29T20:42:50.4612820Z #20 7.124   Downloading watchfiles-1.3.0-cp310-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (4.9 kB)
+2026-09-29T20:42:50.4614333Z #20 7.244 Collecting websockets>=13.0 (from uvicorn[standard]>=0.32->webhook-inspector==0.2.0)
+2026-09-29T20:42:50.6261543Z #20 7.252   Downloading websockets-17.1-cp312-cp312-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl.metadata (6.3 kB)
+2026-09-29T20:42:50.6262843Z #20 7.268 Collecting pycparser (from cffi>=2.0.0->cryptography>=43->webhook-inspector==0.2.0)
+2026-09-29T20:42:50.6263752Z #20 7.275   Downloading pycparser-3.0-py3-none-any.whl.metadata (8.2 kB)
+2026-09-29T20:42:50.6264437Z #20 7.409 Collecting MarkupSafe>=2.0 (from Mako->alembic>=1.14->webhook-inspector==0.2.0)
+2026-09-29T20:42:50.8096688Z #20 7.417   Downloading markupsafe-3.0.3-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (2.7 kB)
+2026-09-29T20:42:50.8104933Z #20 7.432 Downloading alembic-1.20.0-py3-none-any.whl (268 kB)
+2026-09-29T20:42:50.8105452Z #20 7.460 Downloading asyncpg-0.31.0-cp312-cp312-manylinux_2_28_x86_64.whl (3.5 MB)
+2026-09-29T20:42:50.9129337Z #20 7.593    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 3.5/3.5 MB 28.8 MB/s eta 0:00:00
+2026-09-29T20:42:50.9132380Z #20 7.601 Downloading cryptography-50.0.1-cp311-abi3-manylinux_2_34_x86_64.whl (4.7 MB)
+2026-09-29T20:42:50.9150347Z #20 7.678    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 4.7/4.7 MB 65.1 MB/s eta 0:00:00
+2026-09-29T20:42:50.9151570Z #20 7.686 Downloading fastapi-0.142.0-py3-none-any.whl (144 kB)
+2026-09-29T20:42:50.9153252Z #20 7.695 Downloading greenlet-3.5.6-cp312-cp312-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl (621 kB)
+2026-09-29T20:42:51.0400523Z #20 7.705    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 621.4/621.4 kB 64.8 MB/s eta 0:00:00
+2026-09-29T20:42:51.0401694Z #20 7.713 Downloading httpx-0.28.1-py3-none-any.whl (73 kB)
+2026-09-29T20:42:51.0402695Z #20 7.721 Downloading httpcore-1.0.9-py3-none-any.whl (78 kB)
+2026-09-29T20:42:51.0403693Z #20 7.731 Downloading pydantic-2.13.5-py3-none-any.whl (472 kB)
+2026-09-29T20:42:51.0404900Z #20 7.740 Downloading pydantic_core-2.46.5-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (2.1 MB)
+2026-09-29T20:42:51.0406244Z #20 7.763    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2.1/2.1 MB 91.3 MB/s eta 0:00:00
+2026-09-29T20:42:51.0407207Z #20 7.772 Downloading pydantic_settings-2.15.0-py3-none-any.whl (69 kB)
+2026-09-29T20:42:51.0408741Z #20 7.781 Downloading sqlalchemy-2.1.1-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (4.7 MB)
+2026-09-29T20:42:51.0410382Z #20 7.823    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 4.7/4.7 MB 129.1 MB/s eta 0:00:00
+2026-09-29T20:42:51.1440339Z #20 7.830 Downloading uvicorn-0.54.0-py3-none-any.whl (87 kB)
+2026-09-29T20:42:51.1441168Z #20 7.838 Downloading annotated_doc-0.0.5-py3-none-any.whl (5.3 kB)
+2026-09-29T20:42:51.1441906Z #20 7.845 Downloading annotated_types-0.8.0-py3-none-any.whl (13 kB)
+2026-09-29T20:42:51.1442853Z #20 7.853 Downloading cffi-2.1.1-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (221 kB)
+2026-09-29T20:42:51.1443738Z #20 7.862 Downloading click-8.5.0-py3-none-any.whl (125 kB)
+2026-09-29T20:42:51.1444313Z #20 7.872 Downloading h11-0.16.0-py3-none-any.whl (37 kB)
+2026-09-29T20:42:51.1444914Z #20 7.881 Downloading httptools-0.8.0-cp312-cp312-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl (523 kB)
+2026-09-29T20:42:51.1445562Z #20 7.889 Downloading opentelemetry_api-1.45.0-py3-none-any.whl (60 kB)
+2026-09-29T20:42:51.1446024Z #20 7.899 Downloading python_dotenv-1.2.3-py3-none-any.whl (22 kB)
+2026-09-29T20:42:51.1446669Z #20 7.906 Downloading pyyaml-6.0.3-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (807 kB)
+2026-09-29T20:42:51.1447685Z #20 7.912    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 807.9/807.9 kB 182.2 MB/s eta 0:00:00
+2026-09-29T20:42:51.1448345Z #20 7.919 Downloading starlette-1.7.0-py3-none-any.whl (78 kB)
+2026-09-29T20:42:51.1448736Z #20 7.927 Downloading anyio-4.15.1-py3-none-any.whl (132 kB)
+2026-09-29T20:42:51.2458402Z #20 7.934 Downloading idna-3.20-py3-none-any.whl (69 kB)
+2026-09-29T20:42:51.2459190Z #20 7.941 Downloading typing_extensions-4.16.0-py3-none-any.whl (45 kB)
+2026-09-29T20:42:51.2460442Z #20 7.949 Downloading typing_inspection-0.4.4-py3-none-any.whl (14 kB)
+2026-09-29T20:42:51.2461593Z #20 7.956 Downloading uvloop-0.22.1-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (4.4 MB)
+2026-09-29T20:42:51.2463100Z #20 7.983    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 4.4/4.4 MB 176.8 MB/s eta 0:00:00
+2026-09-29T20:42:51.2464107Z #20 7.992 Downloading watchfiles-1.3.0-cp310-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (458 kB)
+2026-09-29T20:42:51.2465425Z #20 8.002 Downloading websockets-17.1-cp312-cp312-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl (224 kB)
+2026-09-29T20:42:51.2466466Z #20 8.011 Downloading certifi-2026.7.22-py3-none-any.whl (136 kB)
+2026-09-29T20:42:51.2467137Z #20 8.020 Downloading mako-1.4.3-py3-none-any.whl (80 kB)
+2026-09-29T20:42:51.2468287Z #20 8.029 Downloading markupsafe-3.0.3-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (22 kB)
+2026-09-29T20:42:51.3885876Z #20 8.038 Downloading pycparser-3.0-py3-none-any.whl (48 kB)
+2026-09-29T20:42:51.3886760Z #20 8.088 Building wheels for collected packages: webhook-inspector
+2026-09-29T20:42:51.3910963Z #20 8.090   Building wheel for webhook-inspector (pyproject.toml): started
+2026-09-29T20:42:51.6245285Z #20 8.407   Building wheel for webhook-inspector (pyproject.toml): finished with status 'done'
+2026-09-29T20:42:51.8435810Z #20 8.409   Created wheel for webhook-inspector: filename=webhook_inspector-0.2.0-py3-none-any.whl size=35645 sha256=346e88c8581c9ac3cd15ca5bf12808239d7e5cc29b5109edda3e5b7a5d676cea
+2026-09-29T20:42:51.8438649Z #20 8.409   Stored in directory: /tmp/pip-ephem-wheel-cache-5wg5ai98/wheels/54/1b/b7/aa63e25c8f14f4f2ae7b04e6097bdecb770e455c5c1ee0a600
+2026-09-29T20:42:51.8440176Z #20 8.411 Successfully built webhook-inspector
+2026-09-29T20:42:51.8443174Z #20 8.476 Installing collected packages: websockets, uvloop, typing-extensions, pyyaml, python-dotenv, pycparser, MarkupSafe, idna, httptools, h11, greenlet, click, certifi, asyncpg, annotated-types, annotated-doc, uvicorn, typing-inspection, sqlalchemy, pydantic-core, opentelemetry-api, Mako, httpcore, cffi, anyio, watchfiles, starlette, pydantic, httpx, cryptography, alembic, pydantic-settings, fastapi, webhook-inspector
+2026-09-29T20:42:53.0163630Z #20 ...
+2026-09-29T20:42:53.0164446Z 
+2026-09-29T20:42:53.0165020Z #22 [frontend-build 6/6] RUN npm run build
+2026-09-29T20:42:53.0165777Z #22 0.373 
+2026-09-29T20:42:53.0166427Z #22 0.373 > webhook-inspector-frontend@0.2.0 build
+2026-09-29T20:42:53.0167187Z #22 0.373 > tsc --noEmit && vite build
+2026-09-29T20:42:53.0167776Z #22 0.373 
+2026-09-29T20:42:53.0168513Z #22 5.037 vite v5.4.21 building for production...
+2026-09-29T20:42:53.0169216Z #22 5.106 transforming...
+2026-09-29T20:42:53.0170163Z #22 6.364 ✓ 50 modules transformed.
+2026-09-29T20:42:53.0170779Z #22 6.559 rendering chunks...
+2026-09-29T20:42:53.0171348Z #22 6.567 computing gzip size...
+2026-09-29T20:42:53.0172145Z #22 6.577 dist/index.html                   0.57 kB │ gzip:  0.35 kB
+2026-09-29T20:42:53.0173092Z #22 6.577 dist/assets/index-DyFCdGq5.css    9.80 kB │ gzip:  2.76 kB
+2026-09-29T20:42:53.0174118Z #22 6.577 dist/assets/index-C-Q4zFw4.js   212.24 kB │ gzip: 66.08 kB
+2026-09-29T20:42:53.0174930Z #22 6.578 ✓ built in 1.51s
+2026-09-29T20:42:53.0175475Z #22 DONE 6.7s
+2026-09-29T20:42:53.1670142Z 
+2026-09-29T20:42:53.1670827Z #20 [runtime 8/9] RUN pip install --no-cache-dir .
+2026-09-29T20:42:55.2752489Z #20 12.06 Successfully installed Mako-1.4.3 MarkupSafe-3.0.3 alembic-1.20.0 annotated-doc-0.0.5 annotated-types-0.8.0 anyio-4.15.1 asyncpg-0.31.0 certifi-2026.7.22 cffi-2.1.1 click-8.5.0 cryptography-50.0.1 fastapi-0.142.0 greenlet-3.5.6 h11-0.16.0 httpcore-1.0.9 httptools-0.8.0 httpx-0.28.1 idna-3.20 opentelemetry-api-1.45.0 pycparser-3.0 pydantic-2.13.5 pydantic-core-2.46.5 pydantic-settings-2.15.0 python-dotenv-1.2.3 pyyaml-6.0.3 sqlalchemy-2.1.1 starlette-1.7.0 typing-extensions-4.16.0 typing-inspection-0.4.4 uvicorn-0.54.0 uvloop-0.22.1 watchfiles-1.3.0 webhook-inspector-0.2.0 websockets-17.1
+2026-09-29T20:42:55.4962726Z #20 12.06 WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+2026-09-29T20:42:55.4965085Z #20 12.13 
+2026-09-29T20:42:55.4965547Z #20 12.13 [notice] A new release of pip is available: 25.0.1 -> 26.2.1
+2026-09-29T20:42:55.4966219Z #20 12.13 [notice] To update, run: pip install --upgrade pip
+2026-09-29T20:42:55.5882085Z #20 DONE 12.4s
+2026-09-29T20:42:55.7542137Z 
+2026-09-29T20:42:55.7548448Z #23 [runtime 9/9] COPY --from=frontend-build /build/dist ./static
+2026-09-29T20:42:55.7549111Z #23 DONE 0.0s
+2026-09-29T20:42:55.7549289Z 
+2026-09-29T20:42:55.7549441Z #24 exporting to image
+2026-09-29T20:42:55.7549777Z #24 exporting layers
+2026-09-29T20:42:56.7481960Z #24 exporting layers 1.1s done
+2026-09-29T20:42:56.7763640Z  app  Built
+2026-09-29T20:42:56.7764351Z #24 writing image sha256:27c4f13124e81c02edf016e4dff217026b4e1e346bd9b2890d80812026659a0f done
+2026-09-29T20:42:56.7765102Z #24 naming to docker.io/library/webhook-inspector-app done
+2026-09-29T20:42:56.7766029Z #24 DONE 1.2s
+2026-09-29T20:42:56.7766197Z 
+2026-09-29T20:42:56.7766351Z #25 resolving provenance for metadata file
+2026-09-29T20:42:56.7766714Z #25 DONE 0.0s
+2026-09-29T20:42:56.7779505Z  Network webhook-inspector_default  Creating
+2026-09-29T20:42:56.8150692Z  Network webhook-inspector_default  Created
+2026-09-29T20:42:56.8159988Z  Volume "webhook-inspector_pgdata"  Creating
+2026-09-29T20:42:56.8172174Z  Volume "webhook-inspector_pgdata"  Created
+2026-09-29T20:42:56.8177420Z  Container webhook-inspector-db-1  Creating
+2026-09-29T20:42:56.8393926Z  Container webhook-inspector-db-1  Created
+2026-09-29T20:42:56.8394581Z  Container webhook-inspector-app-1  Creating
+2026-09-29T20:42:56.8480306Z  Container webhook-inspector-app-1  Created
+2026-09-29T20:42:56.8490304Z  Container webhook-inspector-db-1  Starting
+2026-09-29T20:42:56.9946693Z  Container webhook-inspector-db-1  Started
+2026-09-29T20:42:56.9947297Z  Container webhook-inspector-db-1  Waiting
+2026-09-29T20:43:02.4965895Z  Container webhook-inspector-db-1  Healthy
+2026-09-29T20:43:02.4966562Z  Container webhook-inspector-app-1  Starting
+2026-09-29T20:43:02.6325220Z  Container webhook-inspector-app-1  Started
+2026-09-29T20:43:02.6414697Z ##[group]Run for i in $(seq 1 60); do
+2026-09-29T20:43:02.6415032Z [36;1mfor i in $(seq 1 60); do[0m
+2026-09-29T20:43:02.6415439Z [36;1m  if curl -sf http://localhost:8000/api/health > /dev/null; then[0m
+2026-09-29T20:43:02.6415849Z [36;1m    echo "backend healthy"; exit 0[0m
+2026-09-29T20:43:02.6416133Z [36;1m  fi[0m
+2026-09-29T20:43:02.6416341Z [36;1m  sleep 2[0m
+2026-09-29T20:43:02.6416560Z [36;1mdone[0m
+2026-09-29T20:43:02.6416932Z [36;1mecho "backend did not become healthy"; docker compose logs --tail 100; exit 1[0m
+2026-09-29T20:43:02.6491296Z shell: /usr/bin/bash -e {0}
+2026-09-29T20:43:02.6491576Z ##[endgroup]
+2026-09-29T20:45:03.1570846Z backend did not become healthy
+2026-09-29T20:45:03.2280396Z db-1  | The files belonging to this database system will be owned by user "postgres".
+2026-09-29T20:45:03.2286916Z db-1  | This user must also own the server process.
+2026-09-29T20:45:03.2287687Z db-1  | 
+2026-09-29T20:45:03.2288716Z db-1  | The database cluster will be initialized with locale "en_US.utf8".
+2026-09-29T20:45:03.2289532Z db-1  | The default database encoding has accordingly been set to "UTF8".
+2026-09-29T20:45:03.2290286Z db-1  | The default text search configuration will be set to "english".
+2026-09-29T20:45:03.2290834Z db-1  | 
+2026-09-29T20:45:03.2291154Z db-1  | Data page checksums are disabled.
+2026-09-29T20:45:03.2291569Z db-1  | 
+2026-09-29T20:45:03.2292057Z db-1  | fixing permissions on existing directory /var/lib/postgresql/data ... ok
+2026-09-29T20:45:03.2292704Z db-1  | creating subdirectories ... ok
+2026-09-29T20:45:03.2293206Z db-1  | selecting dynamic shared memory implementation ... posix
+2026-09-29T20:45:03.2293604Z db-1  | selecting default max_connections ... 100
+2026-09-29T20:45:03.2293939Z db-1  | selecting default shared_buffers ... 128MB
+2026-09-29T20:45:03.2294275Z db-1  | selecting default time zone ... UTC
+2026-09-29T20:45:03.2294572Z db-1  | creating configuration files ... ok
+2026-09-29T20:45:03.2294869Z db-1  | running bootstrap script ... ok
+2026-09-29T20:45:03.2295160Z db-1  | sh: locale: not found
+2026-09-29T20:45:03.2295525Z db-1  | 2026-09-29 20:42:57.448 UTC [35] WARNING:  no usable system locales were found
+2026-09-29T20:45:03.2295954Z db-1  | performing post-bootstrap initialization ... ok
+2026-09-29T20:45:03.2296277Z db-1  | syncing data to disk ... ok
+2026-09-29T20:45:03.2296527Z db-1  | 
+2026-09-29T20:45:03.2296712Z db-1  | 
+2026-09-29T20:45:03.2296963Z db-1  | Success. You can now start the database server using:
+2026-09-29T20:45:03.2297284Z db-1  | 
+2026-09-29T20:45:03.2297575Z db-1  |     pg_ctl -D /var/lib/postgresql/data -l logfile start
+2026-09-29T20:45:03.2298097Z db-1  | 
+2026-09-29T20:45:03.2298443Z db-1  | initdb: warning: enabling "trust" authentication for local connections
+2026-09-29T20:45:03.2299193Z db-1  | initdb: hint: You can change this by editing pg_hba.conf or using the option -A, or --auth-local and --auth-host, the next time you run initdb.
+2026-09-29T20:45:03.2300580Z db-1  | waiting for server to start....2026-09-29 20:42:58.018 UTC [41] LOG:  starting PostgreSQL 16.15 on x86_64-pc-linux-musl, compiled by gcc (Alpine 15.2.0) 15.2.0, 64-bit
+2026-09-29T20:45:03.2301412Z db-1  | 2026-09-29 20:42:58.019 UTC [41] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2026-09-29T20:45:03.2302006Z db-1  | 2026-09-29 20:42:58.021 UTC [44] LOG:  database system was shut down at 2026-09-29 20:42:57 UTC
+2026-09-29T20:45:03.2302564Z db-1  | 2026-09-29 20:42:58.025 UTC [41] LOG:  database system is ready to accept connections
+2026-09-29T20:45:03.2302939Z db-1  |  done
+2026-09-29T20:45:03.2303149Z db-1  | server started
+2026-09-29T20:45:03.2303368Z db-1  | CREATE DATABASE
+2026-09-29T20:45:03.2303579Z db-1  | 
+2026-09-29T20:45:03.2303757Z db-1   | 
+2026-09-29T20:45:03.2304100Z db-1   | /usr/local/bin/docker-entrypoint.sh: ignoring /docker-entrypoint-initdb.d/*
+2026-09-29T20:45:03.2304498Z db-1   | 
+2026-09-29T20:45:03.2305107Z db-1   | waiting for server to shut down....2026-09-29 20:42:58.167 UTC [41] LOG:  received fast shutdown request
+2026-09-29T20:45:03.2305669Z db-1   | 2026-09-29 20:42:58.167 UTC [41] LOG:  aborting any active transactions
+2026-09-29T20:45:03.2306517Z db-1   | 2026-09-29 20:42:58.171 UTC [41] LOG:  background worker "logical replication launcher" (PID 47) exited with exit code 1
+2026-09-29T20:45:03.2307364Z db-1   | 2026-09-29 20:42:58.171 UTC [42] LOG:  shutting down
+2026-09-29T20:45:03.2308124Z db-1   | 2026-09-29 20:42:58.172 UTC [42] LOG:  checkpoint starting: shutdown immediate
+2026-09-29T20:45:03.2309885Z db-1   | 2026-09-29 20:42:58.187 UTC [42] LOG:  checkpoint complete: wrote 926 buffers (5.7%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.013 s, sync=0.002 s, total=0.016 s; sync files=301, longest=0.001 s, average=0.001 s; distance=4283 kB, estimate=4283 kB; lsn=0/1925D68, redo lsn=0/1925D68
+2026-09-29T20:45:03.2311068Z db-1   | 2026-09-29 20:42:58.195 UTC [41] LOG:  database system is shut down
+2026-09-29T20:45:03.2311409Z db-1   |  done
+2026-09-29T20:45:03.2311620Z db-1   | server stopped
+2026-09-29T20:45:03.2311837Z db-1   | 
+2026-09-29T20:45:03.2312103Z db-1   | PostgreSQL init process complete; ready for start up.
+2026-09-29T20:45:03.2312418Z db-1   | 
+2026-09-29T20:45:03.2312881Z db-1   | 2026-09-29 20:42:58.289 UTC [1] LOG:  starting PostgreSQL 16.15 on x86_64-pc-linux-musl, compiled by gcc (Alpine 15.2.0) 15.2.0, 64-bit
+2026-09-29T20:45:03.2313514Z db-1   | 2026-09-29 20:42:58.290 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+2026-09-29T20:45:03.2318383Z db-1   | 2026-09-29 20:42:58.290 UTC [1] LOG:  listening on IPv6 address "::", port 5432
+2026-09-29T20:45:03.2319318Z db-1   | 2026-09-29 20:42:58.290 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2026-09-29T20:45:03.2320269Z db-1   | 2026-09-29 20:42:58.293 UTC [57] LOG:  database system was shut down at 2026-09-29 20:42:58 UTC
+2026-09-29T20:45:03.2321217Z db-1   | 2026-09-29 20:42:58.298 UTC [1] LOG:  database system is ready to accept connections
+2026-09-29T20:45:03.2322156Z app-1  |   File "/usr/local/lib/python3.12/site-packages/alembic/config.py", line 1039, in main
+2026-09-29T20:45:03.2322906Z app-1  |     CommandLine(prog=prog).main(argv=argv)
+2026-09-29T20:45:03.2323587Z app-1  |   File "/usr/local/lib/python3.12/site-packages/alembic/config.py", line 1029, in main
+2026-09-29T20:45:03.2324213Z app-1  |     self.run_cmd(cfg, options)
+2026-09-29T20:45:03.2324824Z app-1  |   File "/usr/local/lib/python3.12/site-packages/alembic/config.py", line 963, in run_cmd
+2026-09-29T20:45:03.2325458Z app-1  |     fn(
+2026-09-29T20:45:03.2326073Z app-1  |   File "/usr/local/lib/python3.12/site-packages/alembic/command.py", line 487, in upgrade
+2026-09-29T20:45:03.2326815Z app-1  |     script.run_env()
+2026-09-29T20:45:03.2327429Z app-1  |   File "/usr/local/lib/python3.12/site-packages/alembic/script/base.py", line 550, in run_env
+2026-09-29T20:45:03.2328657Z app-1  |     util.load_python_file(self.dir, "env.py")
+2026-09-29T20:45:03.2329525Z app-1  |   File "/usr/local/lib/python3.12/site-packages/alembic/util/pyfiles.py", line 114, in load_python_file
+2026-09-29T20:45:03.2330392Z app-1  |     module = load_module_py(module_id, path)
+2026-09-29T20:45:03.2330901Z app-1  |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-09-29T20:45:03.2331634Z app-1  |   File "/usr/local/lib/python3.12/site-packages/alembic/util/pyfiles.py", line 132, in load_module_py
+2026-09-29T20:45:03.2332432Z app-1  |     spec.loader.exec_module(module)  # type: ignore
+2026-09-29T20:45:03.2332920Z app-1  |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-09-29T20:45:03.2333493Z app-1  |   File "<frozen importlib._bootstrap_external>", line 999, in exec_module
+2026-09-29T20:45:03.2334256Z app-1  |   File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+2026-09-29T20:45:03.2334967Z app-1  |   File "/app/alembic/env.py", line 62, in <module>
+2026-09-29T20:45:03.2335495Z app-1  |     run_migrations_online()
+2026-09-29T20:45:03.2336243Z app-1  |   File "/app/alembic/env.py", line 56, in run_migrations_online
+2026-09-29T20:45:03.2336720Z app-1  |     asyncio.run(_run_async_migrations())
+2026-09-29T20:45:03.2337116Z app-1  |   File "/usr/local/lib/python3.12/asyncio/runners.py", line 195, in run
+2026-09-29T20:45:03.2337500Z app-1  |     return runner.run(main)
+2026-09-29T20:45:03.2337758Z app-1  |            ^^^^^^^^^^^^^^^^
+2026-09-29T20:45:03.2338421Z app-1  |   File "/usr/local/lib/python3.12/asyncio/runners.py", line 118, in run
+2026-09-29T20:45:03.2338893Z app-1  |     return self._loop.run_until_complete(task)
+2026-09-29T20:45:03.2359865Z app-1  |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-09-29T20:45:03.2360678Z app-1  |   File "/usr/local/lib/python3.12/asyncio/base_events.py", line 691, in run_until_complete
+2026-09-29T20:45:03.2361428Z app-1  |     return future.result()
+2026-09-29T20:45:03.2362000Z app-1  |            ^^^^^^^^^^^^^^^
+2026-09-29T20:45:03.2362545Z app-1  |   File "/app/alembic/env.py", line 48, in _run_async_migrations
+2026-09-29T20:45:03.2363158Z app-1  |     section["sqlalchemy.url"] = _settings().database_url
+2026-09-29T20:45:03.2363517Z app-1  |                                 ^^^^^^^^^^^
+2026-09-29T20:45:03.2363849Z app-1  |   File "/app/alembic/env.py", line 25, in _settings
+2026-09-29T20:45:03.2364175Z app-1  |     return get_settings()
+2026-09-29T20:45:03.2364427Z app-1  |            ^^^^^^^^^^^^^^
+2026-09-29T20:45:03.2364837Z app-1  |   File "/usr/local/lib/python3.12/site-packages/app/config.py", line 101, in get_settings
+2026-09-29T20:45:03.2365441Z app-1  |     return Settings()  # type: ignore[call-arg]  # required fields come from env
+2026-09-29T20:45:03.2365839Z app-1  |            ^^^^^^^^^^
+2026-09-29T20:45:03.2366339Z app-1  |   File "/usr/local/lib/python3.12/site-packages/pydantic_settings/main.py", line 262, in __init__
+2026-09-29T20:45:03.2367006Z app-1  |     super().__init__(**__pydantic_self__.__class__._settings_build_values(sources, init_kwargs))
+2026-09-29T20:45:03.2367608Z app-1  |   File "/usr/local/lib/python3.12/site-packages/pydantic/main.py", line 263, in __init__
+2026-09-29T20:45:03.2368382Z app-1  |     validated_self = self.__pydantic_validator__.validate_python(data, self_instance=self)
+2026-09-29T20:45:03.2368873Z app-1  |                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-09-29T20:45:03.2369342Z app-1  | pydantic_core._pydantic_core.ValidationError: 1 validation error for Settings
+2026-09-29T20:45:03.2370496Z app-1  |   Value error, Refusing to start in production with weak/default secrets: ADMIN_API_TOKEN, SECRET_KEY. Provide strong random values (>= 16 chars, not from the documented defaults). [type=value_error, input_value={'app_env': 'production',..._mock_receiver': 'true'}, input_type=dict]
+2026-09-29T20:45:03.2371659Z app-1  |     For further information visit https://errors.pydantic.dev/2.13/v/value_error
+2026-09-29T20:45:03.2372314Z app-1  | Traceback (most recent call last):
+2026-09-29T20:45:03.2372655Z app-1  |   File "/usr/local/bin/alembic", line 8, in <module>
+2026-09-29T20:45:03.2372978Z app-1  |     sys.exit(main())
+2026-09-29T20:45:03.2373210Z app-1  |              ^^^^^^
+2026-09-29T20:45:03.2373603Z app-1  |   File "/usr/local/lib/python3.12/site-packages/alembic/config.py", line 1039, in main
+2026-09-29T20:45:03.2374058Z app-1  |     CommandLine(prog=prog).main(argv=argv)
+2026-09-29T20:45:03.2374487Z app-1  |   File "/usr/local/lib/python3.12/site-packages/alembic/config.py", line 1029, in main
+2026-09-29T20:45:03.2374900Z app-1  |     self.run_cmd(cfg, options)
+2026-09-29T20:45:03.2375312Z app-1  |   File "/usr/local/lib/python3.12/site-packages/alembic/config.py", line 963, in run_cmd
+2026-09-29T20:45:03.2375732Z app-1  |     fn(
+2026-09-29T20:45:03.2376118Z app-1  |   File "/usr/local/lib/python3.12/site-packages/alembic/command.py", line 487, in upgrade
+2026-09-29T20:45:03.2376553Z app-1  |     script.run_env()
+2026-09-29T20:45:03.2376979Z app-1  |   File "/usr/local/lib/python3.12/site-packages/alembic/script/base.py", line 550, in run_env
+2026-09-29T20:45:03.2377627Z app-1  |     util.load_python_file(self.dir, "env.py")
+2026-09-29T20:45:03.2378377Z app-1  |   File "/usr/local/lib/python3.12/site-packages/alembic/util/pyfiles.py", line 114, in load_python_file
+2026-09-29T20:45:03.2378904Z app-1  |     module = load_module_py(module_id, path)
+2026-09-29T20:45:03.2379222Z app-1  |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-09-29T20:45:03.2379703Z app-1  |   File "/usr/local/lib/python3.12/site-packages/alembic/util/pyfiles.py", line 132, in load_module_py
+2026-09-29T20:45:03.2380234Z app-1  |     spec.loader.exec_module(module)  # type: ignore
+2026-09-29T20:45:03.2380559Z app-1  |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-09-29T20:45:03.2380947Z app-1  |   File "<frozen importlib._bootstrap_external>", line 999, in exec_module
+2026-09-29T20:45:03.2381439Z app-1  |   File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+2026-09-29T20:45:03.2381881Z app-1  |   File "/app/alembic/env.py", line 62, in <module>
+2026-09-29T20:45:03.2382200Z app-1  |     run_migrations_online()
+2026-09-29T20:45:03.2382539Z app-1  |   File "/app/alembic/env.py", line 56, in run_migrations_online
+2026-09-29T20:45:03.2382912Z app-1  |     asyncio.run(_run_async_migrations())
+2026-09-29T20:45:03.2383306Z app-1  |   File "/usr/local/lib/python3.12/asyncio/runners.py", line 195, in run
+2026-09-29T20:45:03.2383674Z app-1  |     return runner.run(main)
+2026-09-29T20:45:03.2383919Z app-1  |            ^^^^^^^^^^^^^^^^
+2026-09-29T20:45:03.2384245Z app-1  |   File "/usr/local/lib/python3.12/asyncio/runners.py", line 118, in run
+2026-09-29T20:45:03.2384639Z app-1  |     return self._loop.run_until_complete(task)
+2026-09-29T20:45:03.2384945Z app-1  |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-09-29T20:45:03.2385370Z app-1  |   File "/usr/local/lib/python3.12/asyncio/base_events.py", line 691, in run_until_complete
+2026-09-29T20:45:03.2385814Z app-1  |     return future.result()
+2026-09-29T20:45:03.2386068Z app-1  |            ^^^^^^^^^^^^^^^
+2026-09-29T20:45:03.2386394Z app-1  |   File "/app/alembic/env.py", line 48, in _run_async_migrations
+2026-09-29T20:45:03.2386795Z app-1  |     section["sqlalchemy.url"] = _settings().database_url
+2026-09-29T20:45:03.2387138Z app-1  |                                 ^^^^^^^^^^^
+2026-09-29T20:45:03.2387466Z app-1  |   File "/app/alembic/env.py", line 25, in _settings
+2026-09-29T20:45:03.2387784Z app-1  |     return get_settings()
+2026-09-29T20:45:03.2388231Z app-1  |            ^^^^^^^^^^^^^^
+2026-09-29T20:45:03.2388745Z app-1  |   File "/usr/local/lib/python3.12/site-packages/app/config.py", line 101, in get_settings
+2026-09-29T20:45:03.2389304Z app-1  |     return Settings()  # type: ignore[call-arg]  # required fields come from env
+2026-09-29T20:45:03.2389694Z app-1  |            ^^^^^^^^^^
+2026-09-29T20:45:03.2390151Z app-1  |   File "/usr/local/lib/python3.12/site-packages/pydantic_settings/main.py", line 262, in __init__
+2026-09-29T20:45:03.2390962Z app-1  |     super().__init__(**__pydantic_self__.__class__._settings_build_values(sources, init_kwargs))
+2026-09-29T20:45:03.2391547Z app-1  |   File "/usr/local/lib/python3.12/site-packages/pydantic/main.py", line 263, in __init__
+2026-09-29T20:45:03.2392131Z app-1  |     validated_self = self.__pydantic_validator__.validate_python(data, self_instance=self)
+2026-09-29T20:45:03.2392613Z app-1  |                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-09-29T20:45:03.2393075Z app-1  | pydantic_core._pydantic_core.ValidationError: 1 validation error for Settings
+2026-09-29T20:45:03.2394239Z app-1  |   Value error, Refusing to start in production with weak/default secrets: ADMIN_API_TOKEN, SECRET_KEY. Provide strong random values (>= 16 chars, not from the documented defaults). [type=value_error, input_value={'app_env': 'production',..._mock_receiver': 'true'}, input_type=dict]
+2026-09-29T20:45:03.2395390Z app-1  |     For further information visit https://errors.pydantic.dev/2.13/v/value_error
+2026-09-29T20:45:03.2406425Z ##[error]Process completed with exit code 1.
+2026-09-29T20:45:03.2482427Z ##[group]Run docker compose logs --tail 200
+2026-09-29T20:45:03.2482789Z [36;1mdocker compose logs --tail 200[0m
+2026-09-29T20:45:03.2553687Z shell: /usr/bin/bash -e {0}
+2026-09-29T20:45:03.2553961Z ##[endgroup]
+2026-09-29T20:45:03.3365660Z db-1  | The files belonging to this database system will be owned by user "postgres".
+2026-09-29T20:45:03.3366700Z db-1  | This user must also own the server process.
+2026-09-29T20:45:03.3368455Z db-1  | 
+2026-09-29T20:45:03.3369837Z db-1  | The database cluster will be initialized with locale "en_US.utf8".
+2026-09-29T20:45:03.3370958Z db-1  | The default database encoding has accordingly been set to "UTF8".
+2026-09-29T20:45:03.3372242Z db-1  | The default text search configuration will be set to "english".
+2026-09-29T20:45:03.3373149Z db-1  | 
+2026-09-29T20:45:03.3373888Z db-1  | Data page checksums are disabled.
+2026-09-29T20:45:03.3374650Z db-1  | 
+2026-09-29T20:45:03.3375605Z db-1  | fixing permissions on existing directory /var/lib/postgresql/data ... ok
+2026-09-29T20:45:03.3376648Z db-1  | creating subdirectories ... ok
+2026-09-29T20:45:03.3377556Z db-1  | selecting dynamic shared memory implementation ... posix
+2026-09-29T20:45:03.3378747Z db-1  | selecting default max_connections ... 100
+2026-09-29T20:45:03.3379476Z db-1  | selecting default shared_buffers ... 128MB
+2026-09-29T20:45:03.3380079Z db-1  | selecting default time zone ... UTC
+2026-09-29T20:45:03.3380641Z db-1  | creating configuration files ... ok
+2026-09-29T20:45:03.3381133Z db-1  | running bootstrap script ... ok
+2026-09-29T20:45:03.3381636Z db-1  | sh: locale: not found
+2026-09-29T20:45:03.3382234Z db-1  | 2026-09-29 20:42:57.448 UTC [35] WARNING:  no usable system locales were found
+2026-09-29T20:45:03.3382917Z db-1  | performing post-bootstrap initialization ... ok
+2026-09-29T20:45:03.3383396Z db-1  | syncing data to disk ... ok
+2026-09-29T20:45:03.3383908Z db-1  | 
+2026-09-29T20:45:03.3384254Z db-1  | 
+2026-09-29T20:45:03.3384750Z db-1  | Success. You can now start the database server using:
+2026-09-29T20:45:03.3385226Z db-1  | 
+2026-09-29T20:45:03.3385637Z db-1  |     pg_ctl -D /var/lib/postgresql/data -l logfile start
+2026-09-29T20:45:03.3386104Z db-1  | 
+2026-09-29T20:45:03.3386562Z db-1  | initdb: warning: enabling "trust" authentication for local connections
+2026-09-29T20:45:03.3387421Z db-1  | initdb: hint: You can change this by editing pg_hba.conf or using the option -A, or --auth-local and --auth-host, the next time you run initdb.
+2026-09-29T20:45:03.3389136Z db-1  | waiting for server to start....2026-09-29 20:42:58.018 UTC [41] LOG:  starting PostgreSQL 16.15 on x86_64-pc-linux-musl, compiled by gcc (Alpine 15.2.0) 15.2.0, 64-bit
+2026-09-29T20:45:03.3390530Z db-1  | 2026-09-29 20:42:58.019 UTC [41] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2026-09-29T20:45:03.3391594Z db-1  | 2026-09-29 20:42:58.021 UTC [44] LOG:  database system was shut down at 2026-09-29 20:42:57 UTC
+2026-09-29T20:45:03.3392144Z db-1  | 2026-09-29 20:42:58.025 UTC [41] LOG:  database system is ready to accept connections
+2026-09-29T20:45:03.3392551Z db-1  |  done
+2026-09-29T20:45:03.3392758Z db-1  | server started
+2026-09-29T20:45:03.3392981Z db-1  | CREATE DATABASE
+2026-09-29T20:45:03.3393190Z db-1  | 
+2026-09-29T20:45:03.3393371Z db-1  | 
+2026-09-29T20:45:03.3393767Z db-1  | /usr/local/bin/docker-entrypoint.sh: ignoring /docker-entrypoint-initdb.d/*
+2026-09-29T20:45:03.3394171Z db-1  | 
+2026-09-29T20:45:03.3394555Z db-1  | waiting for server to shut down....2026-09-29 20:42:58.167 UTC [41] LOG:  received fast shutdown request
+2026-09-29T20:45:03.3395089Z db-1  | 2026-09-29 20:42:58.167 UTC [41] LOG:  aborting any active transactions
+2026-09-29T20:45:03.3395673Z db-1  | 2026-09-29 20:42:58.171 UTC [41] LOG:  background worker "logical replication launcher" (PID 47) exited with exit code 1
+2026-09-29T20:45:03.3396233Z db-1  | 2026-09-29 20:42:58.171 UTC [42] LOG:  shutting down
+2026-09-29T20:45:03.3396850Z db-1  | 2026-09-29 20:42:58.172 UTC [42] LOG:  checkpoint starting: shutdown immediate
+2026-09-29T20:45:03.3398172Z db-1  | 2026-09-29 20:42:58.187 UTC [42] LOG:  checkpoint complete: wrote 926 buffers (5.7%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.013 s, sync=0.002 s, total=0.016 s; sync files=301, longest=0.001 s, average=0.001 s; distance=4283 kB, estimate=4283 kB; lsn=0/1925D68, redo lsn=0/1925D68
+2026-09-29T20:45:03.3399570Z db-1  | 2026-09-29 20:42:58.195 UTC [41] LOG:  database system is shut down
+2026-09-29T20:45:03.3399913Z db-1  |  done
+2026-09-29T20:45:03.3400121Z db-1  | server stopped
+2026-09-29T20:45:03.3400334Z db-1  | 
+2026-09-29T20:45:03.3400600Z db-1  | PostgreSQL init process complete; ready for start up.
+2026-09-29T20:45:03.3400928Z db-1  | 
+2026-09-29T20:45:03.3401387Z db-1  | 2026-09-29 20:42:58.289 UTC [1] LOG:  starting PostgreSQL 16.15 on x86_64-pc-linux-musl, compiled by gcc (Alpine 15.2.0) 15.2.0, 64-bit
+2026-09-29T20:45:03.3402036Z db-1  | 2026-09-29 20:42:58.290 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+2026-09-29T20:45:03.3402595Z db-1  | 2026-09-29 20:42:58.290 UTC [1] LOG:  listening on IPv6 address "::", port 5432
+2026-09-29T20:45:03.3403118Z db-1  | 2026-09-29 20:42:58.290 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2026-09-29T20:45:03.3403686Z db-1  | 2026-09-29 20:42:58.293 UTC [57] LOG:  database system was shut down at 2026-09-29 20:42:58 UTC
+2026-09-29T20:45:03.3404196Z db-1  | 2026-09-29 20:42:58.298 UTC [1] LOG:  database system is ready to accept connections
+2026-09-29T20:45:03.3404747Z app-1  |   File "/usr/local/lib/python3.12/site-packages/alembic/config.py", line 963, in run_cmd
+2026-09-29T20:45:03.3405169Z app-1  |     fn(
+2026-09-29T20:45:03.3405533Z app-1  |   File "/usr/local/lib/python3.12/site-packages/alembic/command.py", line 487, in upgrade
+2026-09-29T20:45:03.3405960Z app-1  |     script.run_env()
+2026-09-29T20:45:03.3406402Z app-1  |   File "/usr/local/lib/python3.12/site-packages/alembic/script/base.py", line 550, in run_env
+2026-09-29T20:45:03.3406921Z app-1  |     util.load_python_file(self.dir, "env.py")
+2026-09-29T20:45:03.3407438Z app-1  |   File "/usr/local/lib/python3.12/site-packages/alembic/util/pyfiles.py", line 114, in load_python_file
+2026-09-29T20:45:03.3408358Z app-1  |     module = load_module_py(module_id, path)
+2026-09-29T20:45:03.3408941Z app-1  |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-09-29T20:45:03.3409560Z app-1  |   File "/usr/local/lib/python3.12/site-packages/alembic/util/pyfiles.py", line 132, in load_module_py
+2026-09-29T20:45:03.3410474Z app-1  |     spec.loader.exec_module(module)  # type: ignore
+2026-09-29T20:45:03.3410937Z app-1  |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-09-29T20:45:03.3411327Z app-1  |   File "<frozen importlib._bootstrap_external>", line 999, in exec_module
+2026-09-29T20:45:03.3411826Z app-1  |   File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+2026-09-29T20:45:03.3412505Z app-1  |   File "/app/alembic/env.py", line 62, in <module>
+2026-09-29T20:45:03.3412843Z app-1  |     run_migrations_online()
+2026-09-29T20:45:03.3413190Z app-1  |   File "/app/alembic/env.py", line 56, in run_migrations_online
+2026-09-29T20:45:03.3413574Z app-1  |     asyncio.run(_run_async_migrations())
+2026-09-29T20:45:03.3413967Z app-1  |   File "/usr/local/lib/python3.12/asyncio/runners.py", line 195, in run
+2026-09-29T20:45:03.3414342Z app-1  |     return runner.run(main)
+2026-09-29T20:45:03.3414590Z app-1  |            ^^^^^^^^^^^^^^^^
+2026-09-29T20:45:03.3414924Z app-1  |   File "/usr/local/lib/python3.12/asyncio/runners.py", line 118, in run
+2026-09-29T20:45:03.3415319Z app-1  |     return self._loop.run_until_complete(task)
+2026-09-29T20:45:03.3415624Z app-1  |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-09-29T20:45:03.3416057Z app-1  |   File "/usr/local/lib/python3.12/asyncio/base_events.py", line 691, in run_until_complete
+2026-09-29T20:45:03.3416506Z app-1  |     return future.result()
+2026-09-29T20:45:03.3416763Z app-1  |            ^^^^^^^^^^^^^^^
+2026-09-29T20:45:03.3417239Z app-1  |   File "/app/alembic/env.py", line 48, in _run_async_migrations
+2026-09-29T20:45:03.3417653Z app-1  |     section["sqlalchemy.url"] = _settings().database_url
+2026-09-29T20:45:03.3418214Z app-1  |                                 ^^^^^^^^^^^
+2026-09-29T20:45:03.3418546Z app-1  |   File "/app/alembic/env.py", line 25, in _settings
+2026-09-29T20:45:03.3418863Z app-1  |     return get_settings()
+2026-09-29T20:45:03.3419113Z app-1  |            ^^^^^^^^^^^^^^
+2026-09-29T20:45:03.3419557Z app-1  |   File "/usr/local/lib/python3.12/site-packages/app/config.py", line 101, in get_settings
+2026-09-29T20:45:03.3420121Z app-1  |     return Settings()  # type: ignore[call-arg]  # required fields come from env
+2026-09-29T20:45:03.3420527Z app-1  |            ^^^^^^^^^^
+2026-09-29T20:45:03.3420964Z app-1  |   File "/usr/local/lib/python3.12/site-packages/pydantic_settings/main.py", line 262, in __init__
+2026-09-29T20:45:03.3421615Z app-1  |     super().__init__(**__pydantic_self__.__class__._settings_build_values(sources, init_kwargs))
+2026-09-29T20:45:03.3422201Z app-1  |   File "/usr/local/lib/python3.12/site-packages/pydantic/main.py", line 263, in __init__
+2026-09-29T20:45:03.3422785Z app-1  |     validated_self = self.__pydantic_validator__.validate_python(data, self_instance=self)
+2026-09-29T20:45:03.3423275Z app-1  |                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-09-29T20:45:03.3423743Z app-1  | pydantic_core._pydantic_core.ValidationError: 1 validation error for Settings
+2026-09-29T20:45:03.3424904Z app-1  |   Value error, Refusing to start in production with weak/default secrets: ADMIN_API_TOKEN, SECRET_KEY. Provide strong random values (>= 16 chars, not from the documented defaults). [type=value_error, input_value={'app_env': 'production',..._mock_receiver': 'true'}, input_type=dict]
+2026-09-29T20:45:03.3426427Z app-1  |     For further information visit https://errors.pydantic.dev/2.13/v/value_error
+2026-09-29T20:45:03.3427134Z app-1  | Traceback (most recent call last):
+2026-09-29T20:45:03.3427636Z app-1  |   File "/usr/local/bin/alembic", line 8, in <module>
+2026-09-29T20:45:03.3428293Z app-1  |     sys.exit(main())
+2026-09-29T20:45:03.3428664Z app-1  |              ^^^^^^
+2026-09-29T20:45:03.3429085Z app-1  |   File "/usr/local/lib/python3.12/site-packages/alembic/config.py", line 1039, in main
+2026-09-29T20:45:03.3429547Z app-1  |     CommandLine(prog=prog).main(argv=argv)
+2026-09-29T20:45:03.3429994Z app-1  |   File "/usr/local/lib/python3.12/site-packages/alembic/config.py", line 1029, in main
+2026-09-29T20:45:03.3430413Z app-1  |     self.run_cmd(cfg, options)
+2026-09-29T20:45:03.3430837Z app-1  |   File "/usr/local/lib/python3.12/site-packages/alembic/config.py", line 963, in run_cmd
+2026-09-29T20:45:03.3431254Z app-1  |     fn(
+2026-09-29T20:45:03.3431633Z app-1  |   File "/usr/local/lib/python3.12/site-packages/alembic/command.py", line 487, in upgrade
+2026-09-29T20:45:03.3432267Z app-1  |     script.run_env()
+2026-09-29T20:45:03.3432697Z app-1  |   File "/usr/local/lib/python3.12/site-packages/alembic/script/base.py", line 550, in run_env
+2026-09-29T20:45:03.3433179Z app-1  |     util.load_python_file(self.dir, "env.py")
+2026-09-29T20:45:03.3433702Z app-1  |   File "/usr/local/lib/python3.12/site-packages/alembic/util/pyfiles.py", line 114, in load_python_file
+2026-09-29T20:45:03.3434220Z app-1  |     module = load_module_py(module_id, path)
+2026-09-29T20:45:03.3434541Z app-1  |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-09-29T20:45:03.3435026Z app-1  |   File "/usr/local/lib/python3.12/site-packages/alembic/util/pyfiles.py", line 132, in load_module_py
+2026-09-29T20:45:03.3435560Z app-1  |     spec.loader.exec_module(module)  # type: ignore
+2026-09-29T20:45:03.3435898Z app-1  |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-09-29T20:45:03.3436290Z app-1  |   File "<frozen importlib._bootstrap_external>", line 999, in exec_module
+2026-09-29T20:45:03.3436801Z app-1  |   File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+2026-09-29T20:45:03.3437443Z app-1  |   File "/app/alembic/env.py", line 62, in <module>
+2026-09-29T20:45:03.3437787Z app-1  |     run_migrations_online()
+2026-09-29T20:45:03.3438527Z app-1  |   File "/app/alembic/env.py", line 56, in run_migrations_online
+2026-09-29T20:45:03.3438914Z app-1  |     asyncio.run(_run_async_migrations())
+2026-09-29T20:45:03.3439307Z app-1  |   File "/usr/local/lib/python3.12/asyncio/runners.py", line 195, in run
+2026-09-29T20:45:03.3439693Z app-1  |     return runner.run(main)
+2026-09-29T20:45:03.3439946Z app-1  |            ^^^^^^^^^^^^^^^^
+2026-09-29T20:45:03.3440290Z app-1  |   File "/usr/local/lib/python3.12/asyncio/runners.py", line 118, in run
+2026-09-29T20:45:03.3440700Z app-1  |     return self._loop.run_until_complete(task)
+2026-09-29T20:45:03.3441052Z app-1  |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-09-29T20:45:03.3441496Z app-1  |   File "/usr/local/lib/python3.12/asyncio/base_events.py", line 691, in run_until_complete
+2026-09-29T20:45:03.3441948Z app-1  |     return future.result()
+2026-09-29T20:45:03.3442206Z app-1  |            ^^^^^^^^^^^^^^^
+2026-09-29T20:45:03.3442525Z app-1  |   File "/app/alembic/env.py", line 48, in _run_async_migrations
+2026-09-29T20:45:03.3442940Z app-1  |     section["sqlalchemy.url"] = _settings().database_url
+2026-09-29T20:45:03.3443293Z app-1  |                                 ^^^^^^^^^^^
+2026-09-29T20:45:03.3443618Z app-1  |   File "/app/alembic/env.py", line 25, in _settings
+2026-09-29T20:45:03.3443949Z app-1  |     return get_settings()
+2026-09-29T20:45:03.3444205Z app-1  |            ^^^^^^^^^^^^^^
+2026-09-29T20:45:03.3444603Z app-1  |   File "/usr/local/lib/python3.12/site-packages/app/config.py", line 101, in get_settings
+2026-09-29T20:45:03.3445155Z app-1  |     return Settings()  # type: ignore[call-arg]  # required fields come from env
+2026-09-29T20:45:03.3445551Z app-1  |            ^^^^^^^^^^
+2026-09-29T20:45:03.3445992Z app-1  |   File "/usr/local/lib/python3.12/site-packages/pydantic_settings/main.py", line 262, in __init__
+2026-09-29T20:45:03.3446634Z app-1  |     super().__init__(**__pydantic_self__.__class__._settings_build_values(sources, init_kwargs))
+2026-09-29T20:45:03.3447220Z app-1  |   File "/usr/local/lib/python3.12/site-packages/pydantic/main.py", line 263, in __init__
+2026-09-29T20:45:03.3447812Z app-1  |     validated_self = self.__pydantic_validator__.validate_python(data, self_instance=self)
+2026-09-29T20:45:03.3448528Z app-1  |                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-09-29T20:45:03.3449002Z app-1  | pydantic_core._pydantic_core.ValidationError: 1 validation error for Settings
+2026-09-29T20:45:03.3450156Z app-1  |   Value error, Refusing to start in production with weak/default secrets: ADMIN_API_TOKEN, SECRET_KEY. Provide strong random values (>= 16 chars, not from the documented defaults). [type=value_error, input_value={'app_env': 'production',..._mock_receiver': 'true'}, input_type=dict]
+2026-09-29T20:45:03.3451488Z app-1  |     For further information visit https://errors.pydantic.dev/2.13/v/value_error
+2026-09-29T20:45:03.3451938Z app-1  | Traceback (most recent call last):
+2026-09-29T20:45:03.3452275Z app-1  |   File "/usr/local/bin/alembic", line 8, in <module>
+2026-09-29T20:45:03.3452592Z app-1  |     sys.exit(main())
+2026-09-29T20:45:03.3452831Z app-1  |              ^^^^^^
+2026-09-29T20:45:03.3453219Z app-1  |   File "/usr/local/lib/python3.12/site-packages/alembic/config.py", line 1039, in main
+2026-09-29T20:45:03.3453670Z app-1  |     CommandLine(prog=prog).main(argv=argv)
+2026-09-29T20:45:03.3454102Z app-1  |   File "/usr/local/lib/python3.12/site-packages/alembic/config.py", line 1029, in main
+2026-09-29T20:45:03.3454523Z app-1  |     self.run_cmd(cfg, options)
+2026-09-29T20:45:03.3454947Z app-1  |   File "/usr/local/lib/python3.12/site-packages/alembic/config.py", line 963, in run_cmd
+2026-09-29T20:45:03.3455364Z app-1  |     fn(
+2026-09-29T20:45:03.3455733Z app-1  |   File "/usr/local/lib/python3.12/site-packages/alembic/command.py", line 487, in upgrade
+2026-09-29T20:45:03.3456291Z app-1  |     script.run_env()
+2026-09-29T20:45:03.3456710Z app-1  |   File "/usr/local/lib/python3.12/site-packages/alembic/script/base.py", line 550, in run_env
+2026-09-29T20:45:03.3457196Z app-1  |     util.load_python_file(self.dir, "env.py")
+2026-09-29T20:45:03.3457693Z app-1  |   File "/usr/local/lib/python3.12/site-packages/alembic/util/pyfiles.py", line 114, in load_python_file
+2026-09-29T20:45:03.3458388Z app-1  |     module = load_module_py(module_id, path)
+2026-09-29T20:45:03.3458700Z app-1  |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-09-29T20:45:03.3459173Z app-1  |   File "/usr/local/lib/python3.12/site-packages/alembic/util/pyfiles.py", line 132, in load_module_py
+2026-09-29T20:45:03.3459689Z app-1  |     spec.loader.exec_module(module)  # type: ignore
+2026-09-29T20:45:03.3460015Z app-1  |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-09-29T20:45:03.3460410Z app-1  |   File "<frozen importlib._bootstrap_external>", line 999, in exec_module
+2026-09-29T20:45:03.3460944Z app-1  |   File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+2026-09-29T20:45:03.3461389Z app-1  |   File "/app/alembic/env.py", line 62, in <module>
+2026-09-29T20:45:03.3461706Z app-1  |     run_migrations_online()
+2026-09-29T20:45:03.3462050Z app-1  |   File "/app/alembic/env.py", line 56, in run_migrations_online
+2026-09-29T20:45:03.3462437Z app-1  |     asyncio.run(_run_async_migrations())
+2026-09-29T20:45:03.3462826Z app-1  |   File "/usr/local/lib/python3.12/asyncio/runners.py", line 195, in run
+2026-09-29T20:45:03.3463201Z app-1  |     return runner.run(main)
+2026-09-29T20:45:03.3463456Z app-1  |            ^^^^^^^^^^^^^^^^
+2026-09-29T20:45:03.3463786Z app-1  |   File "/usr/local/lib/python3.12/asyncio/runners.py", line 118, in run
+2026-09-29T20:45:03.3464186Z app-1  |     return self._loop.run_until_complete(task)
+2026-09-29T20:45:03.3464506Z app-1  |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-09-29T20:45:03.3464945Z app-1  |   File "/usr/local/lib/python3.12/asyncio/base_events.py", line 691, in run_until_complete
+2026-09-29T20:45:03.3465381Z app-1  |     return future.result()
+2026-09-29T20:45:03.3465644Z app-1  |            ^^^^^^^^^^^^^^^
+2026-09-29T20:45:03.3465960Z app-1  |   File "/app/alembic/env.py", line 48, in _run_async_migrations
+2026-09-29T20:45:03.3466366Z app-1  |     section["sqlalchemy.url"] = _settings().database_url
+2026-09-29T20:45:03.3466715Z app-1  |                                 ^^^^^^^^^^^
+2026-09-29T20:45:03.3467042Z app-1  |   File "/app/alembic/env.py", line 25, in _settings
+2026-09-29T20:45:03.3467356Z app-1  |     return get_settings()
+2026-09-29T20:45:03.3467606Z app-1  |            ^^^^^^^^^^^^^^
+2026-09-29T20:45:03.3468189Z app-1  |   File "/usr/local/lib/python3.12/site-packages/app/config.py", line 101, in get_settings
+2026-09-29T20:45:03.3468750Z app-1  |     return Settings()  # type: ignore[call-arg]  # required fields come from env
+2026-09-29T20:45:03.3469320Z app-1  |            ^^^^^^^^^^
+2026-09-29T20:45:03.3469762Z app-1  |   File "/usr/local/lib/python3.12/site-packages/pydantic_settings/main.py", line 262, in __init__
+2026-09-29T20:45:03.3470396Z app-1  |     super().__init__(**__pydantic_self__.__class__._settings_build_values(sources, init_kwargs))
+2026-09-29T20:45:03.3470981Z app-1  |   File "/usr/local/lib/python3.12/site-packages/pydantic/main.py", line 263, in __init__
+2026-09-29T20:45:03.3471565Z app-1  |     validated_self = self.__pydantic_validator__.validate_python(data, self_instance=self)
+2026-09-29T20:45:03.3472056Z app-1  |                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-09-29T20:45:03.3472521Z app-1  | pydantic_core._pydantic_core.ValidationError: 1 validation error for Settings
+2026-09-29T20:45:03.3473825Z app-1  |   Value error, Refusing to start in production with weak/default secrets: ADMIN_API_TOKEN, SECRET_KEY. Provide strong random values (>= 16 chars, not from the documented defaults). [type=value_error, input_value={'app_env': 'production',..._mock_receiver': 'true'}, input_type=dict]
+2026-09-29T20:45:03.3474986Z app-1  |     For further information visit https://errors.pydantic.dev/2.13/v/value_error
+2026-09-29T20:45:03.3475429Z app-1  | Traceback (most recent call last):
+2026-09-29T20:45:03.3475773Z app-1  |   File "/usr/local/bin/alembic", line 8, in <module>
+2026-09-29T20:45:03.3476098Z app-1  |     sys.exit(main())
+2026-09-29T20:45:03.3476336Z app-1  |              ^^^^^^
+2026-09-29T20:45:03.3476723Z app-1  |   File "/usr/local/lib/python3.12/site-packages/alembic/config.py", line 1039, in main
+2026-09-29T20:45:03.3477174Z app-1  |     CommandLine(prog=prog).main(argv=argv)
+2026-09-29T20:45:03.3477611Z app-1  |   File "/usr/local/lib/python3.12/site-packages/alembic/config.py", line 1029, in main
+2026-09-29T20:45:03.3478226Z app-1  |     self.run_cmd(cfg, options)
+2026-09-29T20:45:03.3478658Z app-1  |   File "/usr/local/lib/python3.12/site-packages/alembic/config.py", line 963, in run_cmd
+2026-09-29T20:45:03.3479070Z app-1  |     fn(
+2026-09-29T20:45:03.3479443Z app-1  |   File "/usr/local/lib/python3.12/site-packages/alembic/command.py", line 487, in upgrade
+2026-09-29T20:45:03.3479875Z app-1  |     script.run_env()
+2026-09-29T20:45:03.3480291Z app-1  |   File "/usr/local/lib/python3.12/site-packages/alembic/script/base.py", line 550, in run_env
+2026-09-29T20:45:03.3480773Z app-1  |     util.load_python_file(self.dir, "env.py")
+2026-09-29T20:45:03.3481282Z app-1  |   File "/usr/local/lib/python3.12/site-packages/alembic/util/pyfiles.py", line 114, in load_python_file
+2026-09-29T20:45:03.3481799Z app-1  |     module = load_module_py(module_id, path)
+2026-09-29T20:45:03.3482108Z app-1  |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-09-29T20:45:03.3482578Z app-1  |   File "/usr/local/lib/python3.12/site-packages/alembic/util/pyfiles.py", line 132, in load_module_py
+2026-09-29T20:45:03.3483100Z app-1  |     spec.loader.exec_module(module)  # type: ignore
+2026-09-29T20:45:03.3483424Z app-1  |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-09-29T20:45:03.3483811Z app-1  |   File "<frozen importlib._bootstrap_external>", line 999, in exec_module
+2026-09-29T20:45:03.3484311Z app-1  |   File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+2026-09-29T20:45:03.3484751Z app-1  |   File "/app/alembic/env.py", line 62, in <module>
+2026-09-29T20:45:03.3485077Z app-1  |     run_migrations_online()
+2026-09-29T20:45:03.3485417Z app-1  |   File "/app/alembic/env.py", line 56, in run_migrations_online
+2026-09-29T20:45:03.3485811Z app-1  |     asyncio.run(_run_async_migrations())
+2026-09-29T20:45:03.3486202Z app-1  |   File "/usr/local/lib/python3.12/asyncio/runners.py", line 195, in run
+2026-09-29T20:45:03.3486577Z app-1  |     return runner.run(main)
+2026-09-29T20:45:03.3486839Z app-1  |            ^^^^^^^^^^^^^^^^
+2026-09-29T20:45:03.3487168Z app-1  |   File "/usr/local/lib/python3.12/asyncio/runners.py", line 118, in run
+2026-09-29T20:45:03.3487768Z app-1  |     return self._loop.run_until_complete(task)
+2026-09-29T20:45:03.3488315Z app-1  |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-09-29T20:45:03.3488770Z app-1  |   File "/usr/local/lib/python3.12/asyncio/base_events.py", line 691, in run_until_complete
+2026-09-29T20:45:03.3489217Z app-1  |     return future.result()
+2026-09-29T20:45:03.3489476Z app-1  |            ^^^^^^^^^^^^^^^
+2026-09-29T20:45:03.3489795Z app-1  |   File "/app/alembic/env.py", line 48, in _run_async_migrations
+2026-09-29T20:45:03.3490208Z app-1  |     section["sqlalchemy.url"] = _settings().database_url
+2026-09-29T20:45:03.3490556Z app-1  |                                 ^^^^^^^^^^^
+2026-09-29T20:45:03.3490884Z app-1  |   File "/app/alembic/env.py", line 25, in _settings
+2026-09-29T20:45:03.3491201Z app-1  |     return get_settings()
+2026-09-29T20:45:03.3491451Z app-1  |            ^^^^^^^^^^^^^^
+2026-09-29T20:45:03.3491864Z app-1  |   File "/usr/local/lib/python3.12/site-packages/app/config.py", line 101, in get_settings
+2026-09-29T20:45:03.3492578Z app-1  |     return Settings()  # type: ignore[call-arg]  # required fields come from env
+2026-09-29T20:45:03.3492986Z app-1  |            ^^^^^^^^^^
+2026-09-29T20:45:03.3493417Z app-1  |   File "/usr/local/lib/python3.12/site-packages/pydantic_settings/main.py", line 262, in __init__
+2026-09-29T20:45:03.3494046Z app-1  |     super().__init__(**__pydantic_self__.__class__._settings_build_values(sources, init_kwargs))
+2026-09-29T20:45:03.3494630Z app-1  |   File "/usr/local/lib/python3.12/site-packages/pydantic/main.py", line 263, in __init__
+2026-09-29T20:45:03.3495212Z app-1  |     validated_self = self.__pydantic_validator__.validate_python(data, self_instance=self)
+2026-09-29T20:45:03.3495699Z app-1  |                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-09-29T20:45:03.3496178Z app-1  | pydantic_core._pydantic_core.ValidationError: 1 validation error for Settings
+2026-09-29T20:45:03.3497352Z app-1  |   Value error, Refusing to start in production with weak/default secrets: ADMIN_API_TOKEN, SECRET_KEY. Provide strong random values (>= 16 chars, not from the documented defaults). [type=value_error, input_value={'app_env': 'production',..._mock_receiver': 'true'}, input_type=dict]
+2026-09-29T20:45:03.3498679Z app-1  |     For further information visit https://errors.pydantic.dev/2.13/v/value_error
+2026-09-29T20:45:03.3611548Z Post job cleanup.
+2026-09-29T20:45:03.4484443Z [command]/usr/bin/git version
+2026-09-29T20:45:03.4537125Z git version 2.55.0
+2026-09-29T20:45:03.4584194Z Temporarily overriding HOME='/home/runner/work/_temp/79c809cc-56cb-4332-80e0-1e18323a0430' before making global git config changes
+2026-09-29T20:45:03.4585676Z Adding repository directory to the temporary git global config as a safe directory
+2026-09-29T20:45:03.4586993Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/webhook-inspector/webhook-inspector
+2026-09-29T20:45:03.4632395Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-09-29T20:45:03.4670366Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-09-29T20:45:03.4951164Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-09-29T20:45:03.4985096Z http.https://github.com/.extraheader
+2026-09-29T20:45:03.4997422Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+2026-09-29T20:45:03.5036950Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-09-29T20:45:03.5302170Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-09-29T20:45:03.5349967Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-09-29T20:45:03.5884988Z Cleaning up orphan processes
+2026-09-29T20:45:03.6425617Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

@@ -8,7 +8,7 @@ import { expect, test } from "@playwright/test";
  * Requires a running stack (docker compose up, or a local backend) with the
  * demo override enabled so replay can target the built-in mock receiver.
  */
-const ADMIN_TOKEN = process.env.E2E_ADMIN_TOKEN ?? "e2e-admin-token";
+const ADMIN_TOKEN = process.env.E2E_ADMIN_TOKEN ?? "ci-e2e-4f9a1c7e2b8d46309a5d1f7c3e6b0a24";
 const BASE_URL = process.env.E2E_BASE_URL ?? "http://127.0.0.1:8001";
 
 test.beforeEach(async ({ page }) => {
