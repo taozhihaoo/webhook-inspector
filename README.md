@@ -338,8 +338,10 @@ GitHub Actions (`.github/workflows/ci.yml`) runs on push/PR:
 - **e2e** (`.github/workflows/e2e.yml`): builds the Docker stack and drives the real UI with
   Playwright through the complete loop (create → webhook → inspect → modify → replay → verify)
 
-No external API keys are required in CI. (The first CI run on the initial push failed due to a
-vitest/Playwright file-collection conflict and flaky timing assertions — both fixed in 0.2.0.)
+No external API keys are required in CI. **Both workflows currently pass on GitHub Actions**
+(the first runs on the initial push failed — a vitest/Playwright file-collection conflict, flaky
+timing assertions, and the new production-secret policy correctly rejecting the weak CI tokens —
+all fixed and verified in 0.2.0).
 
 ## Project Structure
 
@@ -394,6 +396,8 @@ cd frontend && npm run dev                        # Vite dev server (proxies to 
 ```
 
 Version is `0.2.0` (pre-1.0 by design). See the changelog below.
+
+CI badge: ![CI](https://github.com/taozhihaoo/webhook-inspector/actions/workflows/ci.yml/badge.svg) ![E2E](https://github.com/taozhihaoo/webhook-inspector/actions/workflows/e2e.yml/badge.svg)
 
 ## Changelog
 
