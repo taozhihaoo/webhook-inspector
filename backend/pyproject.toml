@@ -1,0 +1,58 @@
+[project]
+name = "webhook-inspector"
+version = "0.1.0"
+description = "A developer tool for capturing, inspecting, searching, replaying, and testing HTTP webhooks."
+requires-python = ">=3.12"
+license = { text = "MIT" }
+authors = [{ name = "Webhook Inspector contributors" }]
+dependencies = [
+    "fastapi>=0.115",
+    "uvicorn[standard]>=0.32",
+    "pydantic>=2.9",
+    "pydantic-settings>=2.6",
+    "sqlalchemy[asyncio]>=2.0.36",
+    "greenlet>=3.1",
+    "alembic>=1.14",
+    "asyncpg>=0.30",
+    "httpx>=0.28",
+    "cryptography>=43",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.3",
+    "pytest-asyncio>=0.24",
+    "ruff>=0.7",
+    "aiosqlite>=0.20",
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+src = ["app", "tests"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "UP", "B", "SIM"]
+# UP046/UP047: keep classic Generic[T] syntax for Pydantic/FastAPI models.
+ignore = ["UP046", "UP047"]
+
+[tool.ruff.lint.per-file-ignores]
+# tests construct URLs/hosts that trip the httpx URL-safety lint rules
+"tests/*" = ["S"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+asyncio_default_fixture_loop_scope = "function"
+testpaths = ["tests"]
+# Windows: the default user-temp pytest dir can hit permission errors.
+addopts = "--basetemp=.pytest-tmp"
+filterwarnings = [
+    "ignore::DeprecationWarning:aiosqlite.*",
+]
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["app*"]

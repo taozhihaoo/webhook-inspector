@@ -1,0 +1,29 @@
+# --- secrets & local config ---
+.env
+**/.env
+!.env.example
+
+# --- python ---
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+*.egg-info/
+build/
+dist/
+
+# --- node ---
+node_modules/
+frontend/dist/
+coverage/
+frontend/test-results/
+frontend/playwright-report/
+
+# --- local infrastructure / scratch (embedded postgres, downloads) ---
+.local/
+*.log
+.DS_Store
+
+# built SPA is produced by the Docker build / npm run build
+backend/static/

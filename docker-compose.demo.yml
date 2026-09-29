@@ -1,0 +1,12 @@
+# Demo override: enables the dev mock receiver and allows replay to private
+# addresses (e.g. http://localhost:8000/mock/receiver) so the full
+# capture -> inspect -> modify -> replay loop can be shown locally.
+#
+# NEVER use this override on a publicly reachable deployment:
+#   docker compose -f docker-compose.yml -f docker-compose.demo.yml up -d
+services:
+  app:
+    environment:
+      ENABLE_MOCK_RECEIVER: "true"
+      ALLOW_HTTP_REPLAY: "true"
+      REPLAY_ALLOW_PRIVATE_NETWORKS: "true"

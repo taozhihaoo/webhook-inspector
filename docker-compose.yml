@@ -1,0 +1,37 @@
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: webhook
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-webhook}
+      POSTGRES_DB: webhook_inspector
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U webhook -d webhook_inspector"]
+      interval: 5s
+      timeout: 5s
+      retries: 12
+
+  app:
+    build: .
+    ports:
+      - "${APP_PORT:-8000}:8000"
+    environment:
+      APP_ENV: production
+      DATABASE_URL: postgresql+asyncpg://webhook:${POSTGRES_PASSWORD:-webhook}@db:5432/webhook_inspector
+      ADMIN_API_TOKEN: ${ADMIN_API_TOKEN:?Set ADMIN_API_TOKEN in .env}
+      SECRET_KEY: ${SECRET_KEY:?Set SECRET_KEY in .env}
+      BASE_URL: ${BASE_URL:-http://localhost:8000}
+      CORS_ORIGINS: ${CORS_ORIGINS:-}
+      # Secure defaults; see docker-compose.demo.yml for the local demo override.
+      ENABLE_MOCK_RECEIVER: ${ENABLE_MOCK_RECEIVER:-false}
+      ALLOW_HTTP_REPLAY: "false"
+      REPLAY_ALLOW_PRIVATE_NETWORKS: "false"
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: unless-stopped
+
+volumes:
+  pgdata:
