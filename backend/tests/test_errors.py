@@ -1,6 +1,7 @@
 """Uniform error envelopes; no tracebacks or internals leak to clients."""
 
 from httpx import ASGITransport, AsyncClient
+
 from tests.conftest import ADMIN_TOKEN
 
 

@@ -69,6 +69,7 @@ class TestIngestIntegration:
     async def limited_env(self):
         from app.main import create_app
         from httpx import ASGITransport, AsyncClient
+
         from tests.conftest import ADMIN_TOKEN, create_tables, drop_tables, make_settings
 
         application = create_app(

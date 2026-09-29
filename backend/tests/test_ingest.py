@@ -204,6 +204,7 @@ class TestBodySizeLimit:
     @pytest.fixture
     async def small_client(self):
         from app.main import create_app
+
         from tests.conftest import create_tables, drop_tables, make_settings
 
         application = create_app(make_settings(max_body_size=100))
