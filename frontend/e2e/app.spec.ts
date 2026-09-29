@@ -24,7 +24,7 @@ test("full loop: create, receive, inspect, search, modify, replay", async ({
 }) => {
   // 1. Dashboard loads.
   await page.goto("/");
-  await expect(page.getByRole("heading", { name: "Webhook endpoints" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Webhook endpoints", exact: true })).toBeVisible();
 
   // 2. Create an endpoint through the UI.
   await page.getByRole("button", { name: /new endpoint/i }).click();
