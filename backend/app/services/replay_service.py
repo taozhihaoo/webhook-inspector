@@ -5,13 +5,20 @@ out attempts — so the audit trail shows target URL, timestamp and outcome.
 
 SSRF protection lives in ``app.services.ssrf``; redirects are followed
 manually so each hop is re-validated.
+
+DNS rebinding defence: after validating a hop's DNS results, the TCP
+connection is pinned to one of the validated IPs through a custom httpcore
+network backend. The URL, ``Host`` header and TLS SNI/certificate checks all
+keep using the original hostname, so a re-resolution between validation and
+connection cannot silently move the request to a private address.
 """
 
 import logging
 import time
 from collections.abc import Callable
-from urllib.parse import urljoin
+from urllib.parse import urljoin, urlparse
 
+import httpcore
 import httpx
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker
@@ -30,13 +37,109 @@ STRIPPED_HEADERS = {"host", "content-length"}
 REDIRECT_STATUSES = {301, 302, 303, 307, 308}
 
 
+def _default_network_backend() -> httpcore.AsyncNetworkBackend:
+    """httpcore's auto-selected real backend (asyncio in this app)."""
+    from httpcore._backends.auto import AutoBackend
+
+    return AutoBackend()
+
+
 def _truncate_headers(
     headers: dict[str, str], *, max_headers: int = 50, max_value: int = 2048
 ) -> dict[str, str]:
-    return {
-        str(k)[:200]: str(v)[:max_value]
-        for k, v in list(headers.items())[:max_headers]
-    }
+    return {str(k)[:200]: str(v)[:max_value] for k, v in list(headers.items())[:max_headers]}
+
+
+class _PinningBackend(httpcore.AsyncNetworkBackend):
+    """httpcore network backend that connects to pre-validated IPs.
+
+    ``connect_tcp`` swaps the hostname for the address that was validated for
+    that exact (host, port). TLS is handled by httpcore *after* the TCP
+    connect and keeps using the real hostname for SNI and certificate
+    verification, so HTTPS targets are still verified against the name the
+    user actually typed.
+    """
+
+    def __init__(self, inner: httpcore.AsyncNetworkBackend | None = None):
+        super().__init__()
+        # httpcore 1.x's base class has NO default connect_tcp implementation
+        # (it raises NotImplementedError), so live traffic needs a real
+        # backend: use the auto-selected one unless a test injects a stub.
+        self._inner = inner if inner is not None else _default_network_backend()
+        self._pins: dict[tuple[str, int], str] = {}
+
+    def pin(self, hostname: str, port: int, ip: str) -> None:
+        self._pins[(hostname.rstrip(".").lower(), int(port))] = ip
+
+    async def connect_tcp(
+        self,
+        host: str,
+        port: int,
+        timeout=None,
+        local_address=None,
+        socket_options=None,
+    ):
+        target = self._pins.get((str(host).rstrip(".").lower(), int(port)), host)
+        return await self._inner.connect_tcp(
+            target,
+            port,
+            timeout=timeout,
+            local_address=local_address,
+            socket_options=socket_options,
+        )
+
+
+class _CoreNetworkStream(httpx.AsyncByteStream):
+    """Adapts a raw httpcore network stream to the httpx async-stream protocol."""
+
+    def __init__(self, stream):
+        self._stream = stream
+
+    async def __aiter__(self):
+        async for chunk in self._stream:
+            yield chunk
+
+    async def aclose(self) -> None:
+        await self._stream.aclose()
+
+
+class _PinnedHTTPTransport(httpx.AsyncBaseTransport):
+    """httpx transport around an httpcore pool with a pinning backend.
+
+    Mirrors the request/response conversion httpx's own default transport
+    performs. Timeouts are enforced per-request: httpx attaches a ``timeout``
+    extension to every request it builds, which httpcore 1.x pools honour.
+    """
+
+    def __init__(self, backend: _PinningBackend):
+        self._pool = httpcore.AsyncConnectionPool(network_backend=backend)
+
+    async def handle_async_request(self, request: httpx.Request) -> httpx.Response:
+        assert isinstance(request.stream, httpx.AsyncByteStream)
+        core_request = httpcore.Request(
+            method=request.method,
+            url=httpcore.URL(
+                scheme=request.url.raw_scheme,
+                host=request.url.raw_host,
+                port=request.url.port,
+                target=request.url.raw_path,
+            ),
+            headers=request.headers.raw,
+            content=request.stream,
+            extensions=request.extensions,
+        )
+        response = await self._pool.handle_async_request(core_request)
+        # The URL is passed through untouched: Host header and TLS server
+        # name always derive from the original hostname, never the pinned IP.
+        return httpx.Response(
+            response.status,
+            headers=response.headers,
+            stream=_CoreNetworkStream(response.stream),
+            extensions=response.extensions,
+        )
+
+    async def aclose(self) -> None:
+        await self._pool.aclose()
 
 
 async def _read_capped(response: httpx.Response, cap: int) -> str:
@@ -61,10 +164,19 @@ class ReplayService:
         self.settings = settings
         # Injectable for tests (fake DNS, mock transport).
         self.resolver: Callable = default_resolver
-        self.client_factory: Callable[[], httpx.AsyncClient] = self._default_client
+        self.client_factory: Callable[[_PinningBackend | None], httpx.AsyncClient] = (
+            self._default_client
+        )
 
-    def _default_client(self) -> httpx.AsyncClient:
+    def _default_client(self, backend: _PinningBackend | None = None) -> httpx.AsyncClient:
+        if backend is None:
+            return httpx.AsyncClient(
+                follow_redirects=False,
+                timeout=httpx.Timeout(self.settings.replay_timeout_seconds, connect=5.0),
+            )
+        pool_transport = _PinnedHTTPTransport(backend)
         return httpx.AsyncClient(
+            transport=pool_transport,
             follow_redirects=False,
             timeout=httpx.Timeout(self.settings.replay_timeout_seconds, connect=5.0),
         )
@@ -85,9 +197,7 @@ class ReplayService:
             source_headers = (
                 params.headers if params.headers is not None else (original.headers or {})
             )
-            headers = {
-                k: v for k, v in source_headers.items() if k.lower() not in STRIPPED_HEADERS
-            }
+            headers = {k: v for k, v in source_headers.items() if k.lower() not in STRIPPED_HEADERS}
             body = (
                 params.body_text.encode("utf-8")
                 if params.body_text is not None
@@ -123,19 +233,26 @@ class ReplayService:
         error_message: str | None = None
         duration_ms: int | None = None
 
-        client = self.client_factory()
+        backend = _PinningBackend()
+        client = self.client_factory(backend)
         try:
             url = target
             current_method = method
             current_body = body
             hops = 0
             while True:
-                await validate_target(
+                validated_ips = await validate_target(
                     url,
                     allow_http=self.settings.allow_http_replay,
                     allow_private=self.settings.replay_allow_private_networks,
                     resolver=self.resolver,
                 )
+                if validated_ips:
+                    parts = urlparse(url)
+                    port = parts.port or (443 if parts.scheme == "https" else 80)
+                    # Connect to the address we just validated, not to whatever
+                    # the resolver might return a second time.
+                    backend.pin(parts.hostname or "", port, validated_ips[0])
                 response = await client.request(
                     current_method,
                     url,

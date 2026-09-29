@@ -1,6 +1,5 @@
 """Management API for endpoints: CRUD, auth, validation, unguessable IDs."""
 
-
 from tests.conftest import ADMIN_TOKEN
 
 
@@ -124,9 +123,15 @@ class TestEndpointCrud:
         # Rotate the secret.
         resp = await client.patch(
             f"/api/endpoints/{ep['id']}",
-            json={"signature": {"enabled": True, "header": "X-Signature",
-                                "algorithm": "hmac-sha256", "encoding": "hex",
-                                "secret": "secret-two"}},
+            json={
+                "signature": {
+                    "enabled": True,
+                    "header": "X-Signature",
+                    "algorithm": "hmac-sha256",
+                    "encoding": "hex",
+                    "secret": "secret-two",
+                }
+            },
         )
         assert resp.status_code == 200
 
@@ -135,9 +140,7 @@ class TestEndpointCrud:
         assert ep["ingest_token_configured"] is True
         assert "tok-abc" not in (await client.get(f"/api/endpoints/{ep['id']}")).text
 
-        resp = await client.patch(
-            f"/api/endpoints/{ep['id']}", json={"remove_ingest_token": True}
-        )
+        resp = await client.patch(f"/api/endpoints/{ep['id']}", json={"remove_ingest_token": True})
         assert resp.status_code == 200
         assert resp.json()["data"]["ingest_token_configured"] is False
 

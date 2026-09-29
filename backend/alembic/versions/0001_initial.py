@@ -36,9 +36,7 @@ def upgrade() -> None:
             server_default="application/json",
             nullable=False,
         ),
-        sa.Column(
-            "response_body", sa.Text(), server_default='{"received": true}', nullable=False
-        ),
+        sa.Column("response_body", sa.Text(), server_default='{"received": true}', nullable=False),
         sa.Column("response_delay_ms", sa.Integer(), server_default="0", nullable=False),
         sa.Column("replay_target_url", sa.String(length=2000), nullable=True),
         sa.Column("signature_enabled", sa.Boolean(), server_default=sa.false(), nullable=False),
@@ -97,9 +95,7 @@ def upgrade() -> None:
         sa.Column(
             "updated_at", sa.DateTime(timezone=True), server_default=sa.func.now(), nullable=False
         ),
-        sa.ForeignKeyConstraint(
-            ["endpoint_id"], ["webhook_endpoints.id"], ondelete="CASCADE"
-        ),
+        sa.ForeignKeyConstraint(["endpoint_id"], ["webhook_endpoints.id"], ondelete="CASCADE"),
         sa.PrimaryKeyConstraint("id"),
     )
     op.create_index("ix_webhook_requests_endpoint_id", "webhook_requests", ["endpoint_id"])

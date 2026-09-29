@@ -3,12 +3,17 @@
 This is a single-instance limiter: counters live in the memory of one API
 process. Multi-node deployments would need a shared store (documented as
 future work; deliberately out of scope for v1).
+
+State growth is bounded: fully expired keys are dropped on access, and a
+sweep caps the number of tracked keys even when clients rotate source IPs.
 """
 
 import time
 from collections import deque
 from collections.abc import Callable
 from dataclasses import dataclass
+
+MAX_TRACKED_KEYS = 10_000
 
 
 @dataclass
@@ -32,15 +37,38 @@ class SlidingWindowRateLimiter:
         self.clock = clock
         self._hits: dict[str, deque[float]] = {}
 
+    def _purge_expired(self, key: str, window_start: float) -> deque[float] | None:
+        hits = self._hits.get(key)
+        if hits is None:
+            return None
+        while hits and hits[0] <= window_start:
+            hits.popleft()
+        if not hits:
+            del self._hits[key]
+            return None
+        return hits
+
+    def _sweep(self, window_start: float) -> None:
+        for key in list(self._hits):
+            self._purge_expired(key, window_start)
+
     def check(self, key: str) -> RateLimitResult:
         now = self.clock()
         window_start = now - self.window_seconds
-        hits = self._hits.setdefault(key, deque())
 
-        while hits and hits[0] <= window_start:
-            hits.popleft()
+        if len(self._hits) > MAX_TRACKED_KEYS:
+            self._sweep(window_start)
+            # Under adversarial key rotation (unique IPs within one window)
+            # expired-key sweeping is not enough: hard-evict the oldest
+            # entries to keep memory bounded. Evicted counters simply start
+            # fresh on their next hit.
+            while len(self._hits) >= MAX_TRACKED_KEYS:
+                oldest = next(iter(self._hits))
+                del self._hits[oldest]
 
-        if len(hits) >= self.limit:
+        hits = self._purge_expired(key, window_start)
+
+        if hits is not None and len(hits) >= self.limit:
             retry_after = max(1, int(hits[0] + self.window_seconds - now) + 1)
             return RateLimitResult(
                 allowed=False,
@@ -50,6 +78,8 @@ class SlidingWindowRateLimiter:
                 reset_epoch=int(now + retry_after),
             )
 
+        if hits is None:
+            hits = self._hits.setdefault(key, deque())
         hits.append(now)
         return RateLimitResult(
             allowed=True,

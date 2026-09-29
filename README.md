@@ -48,9 +48,9 @@ as-is — to any allowed target.
 | --- | --- |
 | ![Dashboard](docs/screenshots/dashboard.png) | ![Request detail](docs/screenshots/request-detail-json.png) |
 
-| Endpoint overview | Replay result | Signature verified |
-| --- | --- | --- |
-| ![Endpoint](docs/screenshots/endpoint-detail.png) | ![Replay](docs/screenshots/replay-result.png) | ![Signature](docs/screenshots/request-signature-verified.png) |
+| Endpoint overview | Replay & audit trail | SSRF-blocked attempts | Signature verified |
+| --- | --- | --- | --- |
+| ![Endpoint](docs/screenshots/endpoint-detail.png) | ![Replay](docs/screenshots/replay-result.png) | ![SSRF audit](docs/screenshots/ssrf-blocked-audit.png) | ![Signature](docs/screenshots/request-signature-verified.png) |
 
 ## Architecture
 
@@ -79,7 +79,8 @@ React 18, TypeScript, Vite, Vitest, Playwright, Docker Compose, GitHub Actions.
 
 ## Quick Start (local development)
 
-Prerequisites: Python 3.12+, Node 20+, and a PostgreSQL server (or use SQLite for a quick look).
+Prerequisites: Python 3.12+ (developed on 3.13), Node 20+ (developed on 24), and a
+PostgreSQL server (or use SQLite for a quick look).
 
 ```bash
 # 1. Backend
@@ -228,6 +229,12 @@ Replay is a deliberate outbound-request feature, so it is guarded in depth:
   (incl. cloud metadata `169.254.169.254`), CGNAT, reserved, multicast and unspecified ranges
 - Redirects are followed manually and **every hop is re-validated**, so a public URL cannot 302
   into an internal address
+- **IP pinning (DNS rebinding defence)**: after DNS validation, the TCP connection is pinned to a
+  validated address via a custom httpcore network backend. The URL, `Host` header and TLS
+  SNI/certificate verification keep using the original hostname, so a re-resolution between
+  validation and connection cannot silently move the request to a private address
+- Classic IP-obfuscation forms (decimal `2130706433`, hex `0x7f000001`, octal `0177.0.0.1`) and
+  IPv4-mapped IPv6 (`::ffff:127.0.0.1`) are rejected before DNS is even consulted
 - Response bodies are truncated to `REPLAY_MAX_RESPONSE_BYTES`
 
 ## Signature Verification
@@ -314,8 +321,9 @@ cd frontend && npm test && npm run build
 cd frontend && npx playwright test
 ```
 
-The suite is 161 tests across 13 backend modules and passes identically on in-memory SQLite **and**
-a real PostgreSQL 16 server (both configurations were run locally). Focus: ingest fidelity (raw body
+The suite is 232 backend tests across 15 modules plus 41 frontend unit tests and a 3-scenario
+Playwright E2E flow; the backend suite passes identically on in-memory SQLite **and** a real
+PostgreSQL 16 server (all three were run locally). Focus: ingest fidelity (raw body
 preservation, JSON parsing, oversized bodies, rejections), search/pagination, signature and token
 verification, replay success/failure/timeout, the full SSRF block matrix (localhost, private ranges,
 CGNAT, link-local/metadata, schemes, redirect bypasses, DNS-to-private), rate limiting, TTL cleanup,
@@ -330,7 +338,8 @@ GitHub Actions (`.github/workflows/ci.yml`) runs on push/PR:
 - **e2e** (`.github/workflows/e2e.yml`): builds the Docker stack and drives the real UI with
   Playwright through the complete loop (create → webhook → inspect → modify → replay → verify)
 
-No external API keys are required in CI.
+No external API keys are required in CI. (The first CI run on the initial push failed due to a
+vitest/Playwright file-collection conflict and flaky timing assertions — both fixed in 0.2.0.)
 
 ## Project Structure
 
@@ -364,8 +373,11 @@ Stated plainly:
 - **Single instance**: the rate limiter and SSE broker are in-process; run one worker. Horizontal
   scaling needs a shared store (future work).
 - **Rate limiting is per-endpoint + source IP within one process** — not a distributed limiter.
-- **Replay DNS rebinding**: DNS is validated before each hop; a fully rebinding-proof implementation
-  would also pin the connection to the validated IP at the socket layer (future work).
+- **Replay DNS rebinding**: addressed in 0.2.0 — connections are pinned to validated IPs at the
+  socket layer and every hop is re-validated (see *Replay security* above, with offline tests for
+  the rebinding scenarios). Residual note: the pinning relies on httpcore's network-backend
+  contract; it is verified by unit tests plus live HTTP/HTTPS replays, not by a formal security
+  audit.
 - **No multi-user accounts/billing/IAM** — one admin token protects the API. Deploy behind HTTPS on
   a trusted network; anyone with the token sees all captured data.
 - **Webhook payloads are sensitive.** This is a debugging tool: don't point production traffic with
@@ -381,7 +393,28 @@ cd backend  && ruff check . && pytest -q          # lint + tests
 cd frontend && npm run dev                        # Vite dev server (proxies to :8000)
 ```
 
-Version is `0.1.0` (pre-1.0 by design).
+Version is `0.2.0` (pre-1.0 by design). See the changelog below.
+
+## Changelog
+
+### 0.2.0 — Release hardening
+
+- **Security**: replay connections are pinned to DNS-validated IPs (httpcore network backend),
+  closing the DNS-rebinding gap; IP-obfuscation forms (decimal/hex/octal, IPv4-mapped IPv6) are
+  rejected statically; production mode refuses weak/default/short `ADMIN_API_TOKEN` / `SECRET_KEY`
+  (and identical values); SQL parameter logging is silenced unconditionally so stored headers can
+  never leak through debug logs.
+- **Reliability**: rate-limiter memory is now bounded under adversarial key rotation (sweep +
+  hard eviction); oversized requests are rejected even without `Content-Length` (unit-tested);
+  SSE streams unsubscribe on disconnect (unit-tested).
+- **Verified for real**: the full Playwright E2E flow ran against a live stack (and caught a real
+  transport bug in the pinning implementation, which was fixed); the backend suite (232 tests)
+  passes on both SQLite and PostgreSQL 16; Alembic `upgrade → downgrade → upgrade` round trip and
+  schema-vs-models consistency verified on PostgreSQL; layout checked at 1280/1440/1920/mobile
+  widths with no horizontal overflow.
+- **CI**: vitest no longer collects Playwright specs (the actual cause of the first frontend CI
+  failure); timing-assertion flakiness fixed; E2E workflow writes a proper `.env` so compose
+  commands (including failure diagnostics) work.
 
 ## License
 

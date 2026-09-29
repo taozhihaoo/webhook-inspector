@@ -31,6 +31,19 @@ describe("JsonViewer", () => {
     expect(screen.getByText("1")).toBeInTheDocument();
   });
 
+  it("renders event-handler payloads as inert text (img onerror)", () => {
+    render(<JsonViewer data={{ payload: '<img src=x onerror=alert(2)>' }} />);
+    expect(screen.getByText(/onerror=alert\(2\)/)).toBeInTheDocument();
+    // No img element may exist anywhere in the rendered viewer.
+    expect(document.querySelector("img")).toBeNull();
+  });
+
+  it("renders malformed json fragments as data", () => {
+    render(<JsonViewer data={{ note: '{"truncated', other: [null, true] }} />);
+    expect(screen.getByText(/truncated/)).toBeInTheDocument();
+    expect(document.querySelector("script")).toBeNull();
+  });
+
   it("renders empty containers", () => {
     render(<JsonViewer data={{ empty_object: {}, empty_array: [] }} />);
     expect(screen.getByText("{}")).toBeInTheDocument();

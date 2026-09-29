@@ -190,9 +190,7 @@ async def handle_ingest(state, request: Request, public_id: str) -> Response:
 
         body, body_size = await read_body_capped(request, settings.max_body_size)
         if body is None:
-            await _record_request(
-                session, endpoint, request, ip, 413, started, body_size=body_size
-            )
+            await _record_request(session, endpoint, request, ip, 413, started, body_size=body_size)
             return error_response(
                 413,
                 "payload_too_large",

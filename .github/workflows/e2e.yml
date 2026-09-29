@@ -13,13 +13,18 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Configure stack environment
+        run: |
+          cat > .env <<'EOF'
+          ADMIN_API_TOKEN=e2e-admin-token
+          SECRET_KEY=e2e-secret-key-for-ci
+          POSTGRES_PASSWORD=webhook
+          BASE_URL=http://localhost:8000
+          EOF
+
       - name: Build and start the stack
         run: >
           docker compose -f docker-compose.yml -f docker-compose.demo.yml up -d --build
-        env:
-          ADMIN_API_TOKEN: e2e-admin-token
-          SECRET_KEY: e2e-secret-key-for-ci
-          POSTGRES_PASSWORD: webhook
 
       - name: Wait for the backend to become healthy
         run: |

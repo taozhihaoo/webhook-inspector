@@ -20,10 +20,8 @@ async def replay_env() -> AsyncIterator:
         application = create_app(make_settings(**settings_overrides))
         await create_tables(application)
 
-        def client_factory() -> httpx.AsyncClient:
-            return httpx.AsyncClient(
-                transport=httpx.MockTransport(handler), follow_redirects=False
-            )
+        def client_factory(backend=None) -> httpx.AsyncClient:
+            return httpx.AsyncClient(transport=httpx.MockTransport(handler), follow_redirects=False)
 
         async def fake_resolver(hostname: str) -> list[str]:
             return [PUBLIC_IP]
@@ -48,9 +46,7 @@ async def replay_env() -> AsyncIterator:
 
 async def setup_captured_request(client) -> tuple[dict, dict]:
     """Create an endpoint + one captured request; return (endpoint, request)."""
-    ep = (
-        await client.post("/api/endpoints", json={"name": "replay-src"})
-    ).json()["data"]
+    ep = (await client.post("/api/endpoints", json={"name": "replay-src"})).json()["data"]
     resp = await client.post(
         ep["webhook_url"],
         json={"event": "order.created", "order_id": 99},
@@ -135,9 +131,7 @@ class TestReplaySuccess:
                 f"/api/requests/{request['id']}/replay",
                 json={"target_url": "https://target.example.com/x"},
             )
-        history = (
-            await client.get(f"/api/requests/{request['id']}/replays")
-        ).json()["data"]
+        history = (await client.get(f"/api/requests/{request['id']}/replays")).json()["data"]
         assert len(history) == 2
 
     async def test_original_request_unmodified_after_replay(self, replay_env):

@@ -72,8 +72,9 @@ class TestIngestIntegration:
         from tests.conftest import ADMIN_TOKEN, create_tables, drop_tables, make_settings
 
         application = create_app(
-            make_settings(rate_limit_requests=3, rate_limit_window_seconds=60,
-                          trust_proxy_headers=True)
+            make_settings(
+                rate_limit_requests=3, rate_limit_window_seconds=60, trust_proxy_headers=True
+            )
         )
         await create_tables(application)
         client = AsyncClient(transport=ASGITransport(app=application), base_url="http://testserver")
@@ -131,3 +132,25 @@ class TestIngestIntegration:
             ep2["webhook_url"], content=b"x", headers={"X-Forwarded-For": "5.5.5.5"}
         )
         assert resp.status_code == 200
+
+
+class TestStateBounds:
+    def test_expired_key_dropped_on_access(self):
+        clock = FakeClock()
+        limiter = SlidingWindowRateLimiter(2, 60, clock=clock)
+        limiter.check("k")
+        assert "k" in limiter._hits
+        clock.advance(61)
+        limiter.check("k")  # access after expiry purges and re-creates
+        assert list(limiter._hits["k"]) == [clock.now]
+
+    def test_state_bounded_under_key_rotation(self, monkeypatch):
+        """Attackers rotating source IPs must not grow limiter memory."""
+        import app.services.rate_limit as rl_mod
+
+        monkeypatch.setattr(rl_mod, "MAX_TRACKED_KEYS", 10)
+        clock = FakeClock()
+        limiter = SlidingWindowRateLimiter(1_000_000, 60, clock=clock)
+        for i in range(500):
+            limiter.check(f"rotating-{i}")
+        assert len(limiter._hits) <= 10

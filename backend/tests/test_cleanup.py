@@ -70,9 +70,7 @@ class TestCleanupWorker:
         from sqlalchemy import func, select
 
         async with app.state.session_factory() as session:
-            replay_count = await session.scalar(
-                select(func.count()).select_from(ReplayRecord)
-            )
+            replay_count = await session.scalar(select(func.count()).select_from(ReplayRecord))
         assert replay_count == 0
 
     async def test_keeps_expired_within_grace(self, client, make_endpoint, app):

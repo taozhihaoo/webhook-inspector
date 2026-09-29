@@ -17,9 +17,7 @@ router = APIRouter()
 MAX_RECORDED_BODY = 10_000
 
 
-@router.api_route(
-    "/mock/receiver", methods=["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"]
-)
+@router.api_route("/mock/receiver", methods=["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"])
 async def mock_receiver(request: Request) -> JSONResponse:
     body = await request.body()
     entry = {

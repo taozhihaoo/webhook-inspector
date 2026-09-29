@@ -102,9 +102,7 @@ class TestCapture:
 
     async def test_json_without_content_type_header(self, client, make_endpoint):
         ep = await make_endpoint()
-        resp = await client.post(
-            ep["webhook_url"], content=b'{"smuggled": true}'
-        )
+        resp = await client.post(ep["webhook_url"], content=b'{"smuggled": true}')
         assert resp.status_code == 200
         detail = await get_request_detail(client, ep["id"])
         assert detail["body_json"] == {"smuggled": True}
@@ -259,3 +257,33 @@ class TestHistoryCap:
             d = await client.get(f"/api/requests/{item['id']}")
             bodies.append(d.json()["data"]["body_json"]["i"])
         assert sorted(bodies) == [2, 3]  # oldest two were pruned
+
+
+class _StubRequest:
+    """Minimal request for stream-reading unit tests (no Content-Length)."""
+
+    def __init__(self, chunks, headers=None):
+        self._chunks = chunks
+        self.headers = headers or {}
+
+    async def stream(self):
+        for chunk in self._chunks:
+            yield chunk
+
+
+class TestReadBodyCappedUnit:
+    async def test_oversize_without_content_length_rejected(self):
+        from app.services.ingest_service import read_body_capped
+
+        request = _StubRequest([b"x" * 60, b"y" * 60])  # 120 bytes streamed, no header
+        body, size = await read_body_capped(request, 100)
+        assert body is None
+        assert size == 120
+
+    async def test_body_at_exact_cap_allowed(self):
+        from app.services.ingest_service import read_body_capped
+
+        request = _StubRequest([b"x" * 50, b"y" * 50])
+        body, size = await read_body_capped(request, 100)
+        assert body == b"x" * 50 + b"y" * 50
+        assert size == 100

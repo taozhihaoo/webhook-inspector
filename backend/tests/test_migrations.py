@@ -36,8 +36,7 @@ def test_migration_creates_full_schema(tmp_path, monkeypatch):
     conn = sqlite3.connect(db_path)
     try:
         tables = {
-            row[0]
-            for row in conn.execute("SELECT name FROM sqlite_master WHERE type='table'")
+            row[0] for row in conn.execute("SELECT name FROM sqlite_master WHERE type='table'")
         }
     finally:
         conn.close()
@@ -68,8 +67,7 @@ def test_migration_downgrade_removes_schema(tmp_path, monkeypatch):
     conn = sqlite3.connect(db_path)
     try:
         tables = {
-            row[0]
-            for row in conn.execute("SELECT name FROM sqlite_master WHERE type='table'")
+            row[0] for row in conn.execute("SELECT name FROM sqlite_master WHERE type='table'")
         }
     finally:
         conn.close()

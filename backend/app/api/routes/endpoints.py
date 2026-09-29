@@ -109,9 +109,7 @@ async def list_endpoints(request: Request, session: DbSession):
             )
         )
     ).all()
-    return Envelope(
-        data=[to_endpoint_out(e, settings, request, last) for e, last in rows]
-    )
+    return Envelope(data=[to_endpoint_out(e, settings, request, last) for e, last in rows])
 
 
 @router.post("/endpoints", response_model=Envelope[EndpointOut], status_code=201)

@@ -3,6 +3,7 @@
 import asyncio
 import json
 
+import pytest
 from app.api.routes.events import sse_event_stream
 from app.services.events import EventBroker
 
@@ -50,6 +51,11 @@ class _StubRequest:
 
     async def is_disconnected(self) -> bool:
         return False
+
+
+class _DisconnectingRequest:
+    async def is_disconnected(self) -> bool:
+        return True
 
 
 class TestSseStream:
@@ -109,3 +115,17 @@ class TestSseStream:
         assert event["endpoint_id"] == ep["id"]
         assert event["request_id"] > 0
         assert event["method"] == "POST"
+
+    async def test_stream_stops_on_disconnect_and_unsubscribes(self, app, make_endpoint):
+        ep = await make_endpoint()
+        broker = app.state.broker
+        queue = broker.subscribe(ep["id"])
+        generator = sse_event_stream(_DisconnectingRequest(), broker, queue, ep["id"])
+
+        first = await generator.__anext__()
+        assert first == "retry: 3000\n\n"
+        await generator.__anext__()  # connected frame
+
+        with pytest.raises(StopAsyncIteration):
+            await generator.__anext__()  # disconnect check ends the stream
+        assert broker.subscriber_count(ep["id"]) == 0

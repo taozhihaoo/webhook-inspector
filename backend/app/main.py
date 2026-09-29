@@ -28,6 +28,12 @@ logger = logging.getLogger("webhook_inspector")
 
 logging.basicConfig(level=logging.INFO, format="%(levelname)s %(name)s: %(message)s")
 
+# SQL parameter logging would echo stored request headers (which may contain
+# Authorization tokens, ingest tokens, signatures). Keep it off unconditionally.
+logging.getLogger("sqlalchemy.engine").setLevel(logging.WARNING)
+logging.getLogger("aiosqlite").setLevel(logging.WARNING)
+logging.getLogger("asyncpg").setLevel(logging.WARNING)
+
 # Path segments that must never fall through to the SPA catch-all.
 RESERVED_SEGMENTS = {"api", "hook", "mock", "docs", "redoc", "openapi.json", "assets"}
 

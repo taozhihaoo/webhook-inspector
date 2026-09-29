@@ -76,9 +76,7 @@ class WebhookEndpoint(TimestampMixin, Base):
     response_content_type: Mapped[str] = mapped_column(
         String(200), default="application/json", nullable=False
     )
-    response_body: Mapped[str] = mapped_column(
-        Text, default='{"received": true}', nullable=False
-    )
+    response_body: Mapped[str] = mapped_column(Text, default='{"received": true}', nullable=False)
     response_delay_ms: Mapped[int] = mapped_column(Integer, default=0, nullable=False)
 
     replay_target_url: Mapped[str | None] = mapped_column(String(2000), nullable=True)

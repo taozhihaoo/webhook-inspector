@@ -34,11 +34,13 @@ describe("formatRelative", () => {
     expect(formatRelative(new Date().toISOString())).toBe("just now");
   });
   it("returns minutes ago", () => {
-    const fiveMinutesAgo = new Date(Date.now() - 5 * 60 * 1000).toISOString();
-    expect(formatRelative(fiveMinutesAgo)).toBe("5m ago");
+    // 5.5 minutes: floor(330s / 60) = 5, tolerant of slow CI clocks.
+    const ago = new Date(Date.now() - 5.5 * 60 * 1000).toISOString();
+    expect(formatRelative(ago)).toBe("5m ago");
   });
   it("marks future times", () => {
-    const soon = new Date(Date.now() + 2 * 3600 * 1000).toISOString();
+    // 2.5 hours out: floor(8999s / 3600) = 2, tolerant of slow CI clocks.
+    const soon = new Date(Date.now() + 2.5 * 3600 * 1000).toISOString();
     expect(formatRelative(soon)).toBe("in 2h");
   });
   it("handles null", () => {

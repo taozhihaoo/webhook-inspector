@@ -25,7 +25,7 @@ async def ssrf_env() -> AsyncIterator:
         application = create_app(make_settings(**overrides))
         await create_tables(application)
 
-        def client_factory() -> httpx.AsyncClient:
+        def client_factory(backend=None) -> httpx.AsyncClient:
             return httpx.AsyncClient(
                 transport=httpx.MockTransport(handler or _deny_all), follow_redirects=False
             )
@@ -65,9 +65,7 @@ async def _replay(client, target: str) -> dict:
     await client.post(ep["webhook_url"], json={"ping": True})
     lst = (await client.get(f"/api/endpoints/{ep['id']}/requests")).json()["data"]
     request_id = lst["items"][0]["id"]
-    resp = await client.post(
-        f"/api/requests/{request_id}/replay", json={"target_url": target}
-    )
+    resp = await client.post(f"/api/requests/{request_id}/replay", json={"target_url": target})
     assert resp.status_code == 200, resp.text
     return resp.json()["data"]
 
@@ -142,9 +140,7 @@ class TestDnsBasedBypasses:
 
     async def test_all_addresses_must_pass(self, ssrf_env):
         # One public + one private address -> still blocked (fail closed).
-        _app, client = await ssrf_env(
-            resolved={"mixed.example.com": [PUBLIC_IP, "192.168.0.10"]}
-        )
+        _app, client = await ssrf_env(resolved={"mixed.example.com": [PUBLIC_IP, "192.168.0.10"]})
         record = await _replay(client, "https://mixed.example.com/x")
         assert record["status"] == "blocked"
 

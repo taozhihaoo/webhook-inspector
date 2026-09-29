@@ -18,9 +18,9 @@ class TestPagination:
         ep = await make_endpoint()
         await seed_requests(client, ep, 25)
 
-        page1 = (
-            await client.get(f"/api/endpoints/{ep['id']}/requests?page_size=10")
-        ).json()["data"]
+        page1 = (await client.get(f"/api/endpoints/{ep['id']}/requests?page_size=10")).json()[
+            "data"
+        ]
         assert page1["total"] == 25
         assert len(page1["items"]) == 10
         assert page1["page"] == 1
@@ -40,9 +40,7 @@ class TestPagination:
     async def test_page_beyond_range_empty(self, client, make_endpoint):
         ep = await make_endpoint()
         await seed_requests(client, ep, 3)
-        data = (
-            await client.get(f"/api/endpoints/{ep['id']}/requests?page=99")
-        ).json()["data"]
+        data = (await client.get(f"/api/endpoints/{ep['id']}/requests?page=99")).json()["data"]
         assert data["items"] == []
         assert data["total"] == 3
 
@@ -70,9 +68,7 @@ class TestSearch:
     async def test_search_header_value(self, client, make_endpoint):
         ep = await make_endpoint()
         await seed_requests(client, ep, 3)
-        await client.post(
-            ep["webhook_url"], headers={"X-Trace-Id": "findme-42"}, content=b"x"
-        )
+        await client.post(ep["webhook_url"], headers={"X-Trace-Id": "findme-42"}, content=b"x")
         resp = await client.get(f"/api/endpoints/{ep['id']}/requests?search=findme-42")
         assert resp.json()["data"]["total"] == 1
 

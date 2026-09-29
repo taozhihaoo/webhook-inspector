@@ -7,7 +7,7 @@ async def test_health_ok(client):
     assert resp.status_code == 200
     data = resp.json()["data"]
     assert data["status"] == "ok"
-    assert data["version"] == "0.1.0"
+    assert data["version"] == "0.2.0"
     assert data["database"] == "ok"
 
 
